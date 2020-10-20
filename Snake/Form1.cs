@@ -21,8 +21,6 @@ namespace Snake
         private CoreLogic CoreLogic;
 
         private bool IsAppRunning;
-        // private bool IsUserInterruptedShowHamiltonian;
-        //private bool IsUserInterruptedMainLogic;
         private bool IsUserInterrupted;
         private bool IsHamiltonianCycleShown;
 
@@ -34,6 +32,8 @@ namespace Snake
         private Pen PenSnakeHead;
         private Pen PenSnakeBody;
         private Pen PenSnakeTail;
+
+        private SolidBrush SolidBrush;
 
         private Rectangle Square;
 
@@ -88,6 +88,8 @@ namespace Snake
                 };
 
                 Graphics = panel1.CreateGraphics();
+                
+                SolidBrush = new SolidBrush(Color.Empty);
 
                 PenPlayground = new Pen(Color.Black);
                 PenHamiltonianCycle = new Pen(Color.DarkKhaki);
@@ -223,7 +225,8 @@ namespace Snake
             Square.X = point.X;
             Square.Y = point.Y;
             Graphics.DrawRectangle(pen, Square);
-            Graphics.FillRectangle(new SolidBrush(pen.Color), Square);
+            SolidBrush.Color = pen.Color;
+            Graphics.FillRectangle(SolidBrush, Square);
         }
 
         private void DrawPositions(List<Point> pointList, DrawItem drawItem)
