@@ -21,8 +21,9 @@ namespace Snake
         private CoreLogic CoreLogic;
 
         private bool IsAppRunning;
-        private bool IsUserInterruptedShowHamiltonian;
-        private bool IsUserInterruptedMainLogic;
+        // private bool IsUserInterruptedShowHamiltonian;
+        //private bool IsUserInterruptedMainLogic;
+        private bool IsUserInterrupted;
         private bool IsHamiltonianCycleShown;
 
         private Graphics Graphics;
@@ -51,7 +52,6 @@ namespace Snake
         private void Form1_Shown(object sender, EventArgs e)
         {
             this.Text = Config.TitleAppNameAndVersion;
-            IsAppRunning = false;
         }
 
         private void btn_Start_Click(object sender, EventArgs e)
@@ -61,17 +61,7 @@ namespace Snake
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
 
-                if (!IsHamiltonianCycleShown)
-                {
-                    IsUserInterruptedShowHamiltonian = true;
-                }
-                else
-                {
-                    IsUserInterruptedShowHamiltonian = false;
-                }
-                //IsUserInterruptedShowHamiltonian = !IsHamiltonianCycleShown;
-
-                IsUserInterruptedMainLogic = true;
+                IsUserInterrupted = true;
             }
             else
             {
@@ -80,10 +70,9 @@ namespace Snake
                 btn_Start.Text = "Stop";
                 IsAppRunning = true;
 
-                IsUserInterruptedShowHamiltonian = false;
-                IsUserInterruptedMainLogic = false;
                 IsHamiltonianCycleShown = false;
-
+                IsUserInterrupted = false;
+                
                 CoreLogic = new CoreLogic();
 
                 // ToDo: Uwe: The next four parameter should be a function of "CoreLogic.PlaygroundWidth" and "CoreLogic.PlaygroundHeight".
@@ -128,7 +117,7 @@ namespace Snake
                 // Draw cell by cell
                 for (int i = 0; i < hamiltonianCycle.Count; i++)
                 {
-                    if (IsUserInterruptedShowHamiltonian)
+                    if (IsUserInterrupted)
                     {
                         break;
                     }
@@ -139,15 +128,11 @@ namespace Snake
             }).ContinueWith(result =>
             {
                 // Controls are handled here to avoid a "cross-thread" error.
-                if (IsUserInterruptedShowHamiltonian)
+                if (!IsUserInterrupted)
                 {
-                    Log("User interrupted showing the Hamiltonian Cycle!");
-                }
-                else
-                {
-                    Log("Done showing Hamiltonian Cycle.");
                     Log("Start main logic");
                 }
+
                 IsHamiltonianCycleShown = true;
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
@@ -156,12 +141,12 @@ namespace Snake
         {
             var taskA = Task.Factory.StartNew(() =>
             {
-                while (!IsHamiltonianCycleShown && !IsUserInterruptedShowHamiltonian)
+                while (!IsHamiltonianCycleShown && !IsUserInterrupted)
                 {
                     Thread.Sleep(500);
                 }
                 
-                if (IsUserInterruptedShowHamiltonian)
+                if (IsUserInterrupted)
                 {
                     return;
                 }
@@ -192,21 +177,24 @@ namespace Snake
             }).ContinueWith(result =>
             {
                 // Controls are handled here to avoid a "cross-thread" error.
-                if (!IsUserInterruptedShowHamiltonian)
+
+                if (IsUserInterrupted)
                 {
-                    if (IsUserInterruptedMainLogic)
+                    if (!IsHamiltonianCycleShown)
                     {
-                        Log("User interrupted");
-                    }
-                    else
+                        Log("User interrupted showing the Hamiltonian Cycle!");
+                    } else
                     {
-                        Log("Logical end reached.");
+                        Log("User interrupted showing the snake logic!");
                     }
                 }
+                else
+                {
+                    Log("Logical end reached.");
+                }
+                
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
-                IsUserInterruptedShowHamiltonian = false;
-                IsUserInterruptedMainLogic = false;
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
