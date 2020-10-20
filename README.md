@@ -1,7 +1,7 @@
 # Hamiltonian-Cylce-Snake
 
 # Story:
-This is all about the game Snake https://en.wikipedia.org/wiki/Snake_(video_game_genre)<br/>
+This is all about the game Snake (https://en.wikipedia.org/wiki/Snake_(video_game_genre))<br/>
 and Hamilitonian Cycles (https://en.wikipedia.org/wiki/Hamiltonian_path)<br/>
 as seen here<br/>
 <br/>
