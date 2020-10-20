@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,12 +18,17 @@ namespace Snake
             Snake
         }
 
+        private CoreLogic CoreLogic;
+
         private bool IsAppRunning;
-        private bool IsUserInterrupted;
+        private bool IsUserInterruptedShowHamiltonian;
+        private bool IsUserInterruptedMainLogic;
+        private bool IsHamiltonianCycleShown;
 
         private Graphics Graphics;
 
         private Pen PenPlayground;
+        private Pen PenHamiltonianCycle;
         private Pen PenApple;
         private Pen PenSnakeHead;
         private Pen PenSnakeBody;
@@ -46,15 +52,6 @@ namespace Snake
         {
             this.Text = Config.TitleAppNameAndVersion;
             IsAppRunning = false;
-            Graphics = panel1.CreateGraphics();
-
-            PenPlayground = new Pen(Color.Black);
-            PenApple = new Pen(Color.Red);
-            PenSnakeHead = new Pen(Color.Blue);
-            PenSnakeBody = new Pen(Color.Green);
-            PenSnakeTail = new Pen(Color.Yellow);
-
-            DrawCounter = 0;
         }
 
         private void btn_Start_Click(object sender, EventArgs e)
@@ -63,7 +60,18 @@ namespace Snake
             {
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
-                IsUserInterrupted = true;
+
+                if (!IsHamiltonianCycleShown)
+                {
+                    IsUserInterruptedShowHamiltonian = true;
+                }
+                else
+                {
+                    IsUserInterruptedShowHamiltonian = false;
+                }
+                //IsUserInterruptedShowHamiltonian = !IsHamiltonianCycleShown;
+
+                IsUserInterruptedMainLogic = true;
             }
             else
             {
@@ -71,20 +79,15 @@ namespace Snake
 
                 btn_Start.Text = "Stop";
                 IsAppRunning = true;
-                IsUserInterrupted = false;
 
-                CoreLogicWrapper();
-            }
-        } 
-        
-        public void CoreLogicWrapper()
-        {
-            var taskA = Task.Factory.StartNew(() =>
-            {
-                var coreLogic = new CoreLogic();
+                IsUserInterruptedShowHamiltonian = false;
+                IsUserInterruptedMainLogic = false;
+                IsHamiltonianCycleShown = false;
 
-                // ToDo: Uwe: The next four parameter shuold be a function of "CoreLogic.PlaygroundWidth" and "CoreLogic.PlaygroundHeight" and that is why they are set here and not oin the constructor.
-                SquareWidth = 20; 
+                CoreLogic = new CoreLogic();
+
+                // ToDo: Uwe: The next four parameter should be a function of "CoreLogic.PlaygroundWidth" and "CoreLogic.PlaygroundHeight".
+                SquareWidth = 20;
                 SquareHeight = 20;
                 SquareDeltaX = 2;
                 SquareDeltaY = 2;
@@ -95,12 +98,79 @@ namespace Snake
                     Height = SquareHeight
                 };
 
+                Graphics = panel1.CreateGraphics();
+
+                PenPlayground = new Pen(Color.Black);
+                PenHamiltonianCycle = new Pen(Color.DarkKhaki);
+                PenApple = new Pen(Color.Red);
+                PenSnakeHead = new Pen(Color.Blue);
+                PenSnakeBody = new Pen(Color.Green);
+                PenSnakeTail = new Pen(Color.Yellow);
+
+                DrawCounter = 0;
+
+                ShowHamiltonianCycle();
+                CoreLogicWrapper();
+            }
+        }
+
+        private void ShowHamiltonianCycle() 
+        {
+            Log("The Hamiltonian Cycle will be displayed.");
+            var taskA = Task.Factory.StartNew(() =>
+            {
+                var hamiltonianCycle = CoreLogic.GetHamiltonianCycle();
+
+                InitPlayground(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight);
+
+                // Draw all at once
+                // DrawPositions(hamiltonianCycle, DrawItem.Apple);
+                // Draw cell by cell
+                for (int i = 0; i < hamiltonianCycle.Count; i++)
+                {
+                    if (IsUserInterruptedShowHamiltonian)
+                    {
+                        break;
+                    }
+                    var point = ConvertArrayIndecesToGraphicalCoordiantes(hamiltonianCycle[i]);
+                    DrawOneRectangle(point, PenHamiltonianCycle);
+                    Thread.Sleep(20);
+                }
+            }).ContinueWith(result =>
+            {
+                // Controls are handled here to avoid a "cross-thread" error.
+                if (IsUserInterruptedShowHamiltonian)
+                {
+                    Log("User interrupted showing the Hamiltonian Cycle!");
+                }
+                else
+                {
+                    Log("Done showing Hamiltonian Cycle.");
+                    Log("Start main logic");
+                }
+                IsHamiltonianCycleShown = true;
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        
+        public void CoreLogicWrapper()
+        {
+            var taskA = Task.Factory.StartNew(() =>
+            {
+                while (!IsHamiltonianCycleShown && !IsUserInterruptedShowHamiltonian)
+                {
+                    Thread.Sleep(500);
+                }
+                
+                if (IsUserInterruptedShowHamiltonian)
+                {
+                    return;
+                }
                 InitPlayground(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight);
 
                 var coreLogicReturns = new CoreLogic.ReturnData();
                 do
                 {
-                    coreLogicReturns = coreLogic.Main();
+                    coreLogicReturns = CoreLogic.Main();
                     if (coreLogicReturns.ResetThesePositions != null && coreLogicReturns.ResetThesePositions.Count > 0)
                     {
                         DrawPositions(coreLogicReturns.ResetThesePositions, DrawItem.Playground);
@@ -122,16 +192,21 @@ namespace Snake
             }).ContinueWith(result =>
             {
                 // Controls are handled here to avoid a "cross-thread" error.
-                if (IsUserInterrupted)
+                if (!IsUserInterruptedShowHamiltonian)
                 {
-                    txtBox_Info.Text += "User interrupted";
-                }
-                else
-                {
-                    txtBox_Info.Text += "Logical end reached.";
+                    if (IsUserInterruptedMainLogic)
+                    {
+                        Log("User interrupted");
+                    }
+                    else
+                    {
+                        Log("Logical end reached.");
+                    }
                 }
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
+                IsUserInterruptedShowHamiltonian = false;
+                IsUserInterruptedMainLogic = false;
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
@@ -224,6 +299,11 @@ namespace Snake
                 var point = ConvertArrayIndecesToGraphicalCoordiantes(pointList[i]);
                 DrawOneRectangle(point, pen);
             }
+        }
+
+        private void Log(string message)
+        {
+            txtBox_Info.Text += message + "\r\n";
         }
     }
 }

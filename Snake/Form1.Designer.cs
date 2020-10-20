@@ -55,11 +55,11 @@
             // txtBox_Info
             // 
             this.txtBox_Info.Enabled = false;
-            this.txtBox_Info.Location = new System.Drawing.Point(12, 334);
+            this.txtBox_Info.Location = new System.Drawing.Point(12, 55);
             this.txtBox_Info.Multiline = true;
             this.txtBox_Info.Name = "txtBox_Info";
             this.txtBox_Info.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtBox_Info.Size = new System.Drawing.Size(250, 563);
+            this.txtBox_Info.Size = new System.Drawing.Size(250, 842);
             this.txtBox_Info.TabIndex = 2;
             // 
             // Form1

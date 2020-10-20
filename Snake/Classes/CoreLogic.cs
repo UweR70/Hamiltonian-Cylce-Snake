@@ -109,6 +109,62 @@ namespace Snake.Classes
             return ReturnDatas;
         }
 
+        public List<Point> GetHamiltonianCycle()
+        {
+            var hamiltonianCycle = new List<Point>();
+
+            // Column 0 -> x = 0 const
+            //      Row -> y = from 0 to "height"  
+            for (int y = 0; y < PlaygroundHeight; y++)
+            {
+                hamiltonianCycle.Add(new Point(0, y));
+            }
+
+            // 1) Zick-zack pattern. 
+            // 2) Number of rows must be even because otherwise it is not possible to generate a path that starts and ends at the same cell (= {0; 0}) 
+            //    AND
+            //    contains all cells of the rectangle/square.
+            // 3) The generated path goes for the y component from row = (<height> - 1) to row = 0 (note zero based counted).
+            // 4) Even row number (like 0, 2, 4, ...) -> movement = from right to left
+            //    Odd  row number (like 1, 3, 5, ...) -> movement = from left  to right  
+            //    This alernating is the reason why the row number must be even.
+            for (int y = PlaygroundHeight - 1; y > -1; y--)
+            {
+                // Y: Odd row number (like 1, 3, 5, ...)
+                // X: Movement from left to right -> x = 1, 2, 3, 4 ... 
+                for (int x = 1; x < PlaygroundWidth; x++)
+                {
+                    hamiltonianCycle.Add(new Point(x, y));
+                }
+
+                // The next UPPER row -> "y--;"!
+                y--;
+
+                // Y: Even row number (like 0, 2, 4, ...)
+                // X: Movement from right to left -> x = <height>, ..., 4, 3, 2, 1          to x=1 and not x=0 because all "x=0" are specially handled.
+                for (int x = PlaygroundWidth - 1; x > 0; x--)
+                {
+                    hamiltonianCycle.Add(new Point(x, y));
+                }
+            }
+
+            // Test
+            var len = hamiltonianCycle.Count;
+            for (int x = 0; x < PlaygroundWidth; x++)
+            {
+                for (int y = 0; y < PlaygroundHeight; y++)
+                {
+                    if (!hamiltonianCycle.Any(z => z.X == x && z.Y == y))
+                    {
+                        throw new Exception($"Error: The Hamilton Cycle does minimum not include the point ({x}; {y})!");
+                    }
+                }
+
+            }
+
+            return hamiltonianCycle;
+        }
+
         public static bool IsValueEven(int value)
         {
             // "true" for 0, 2, 4 ,6, ...
