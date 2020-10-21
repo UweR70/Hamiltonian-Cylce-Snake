@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -59,9 +58,8 @@ namespace Snake
         private void btn_Start_Click(object sender, EventArgs e)
         {
             // ToDo: UWe: Remove this after testing!
-            //var test = new HamiltonianCycle(); // ############################################################################
-            //test.Test();
-
+            new HamiltonianCycle().Test(); // ############################################################################
+            
             if (IsAppRunning)
             {
                 btn_Start.Text = "Start";
@@ -73,14 +71,12 @@ namespace Snake
             }
             else
             {
-                txtBox_Info.Text = string.Empty;
-
                 btn_Start.Text = "Stop";
                 IsAppRunning = true;
 
                 IsHamiltonianCycleShown = false;
                 IsUserInterrupted = false;
-                
+
                 CoreLogic = new CoreLogic();
 
                 // ToDo: Uwe: The next four parameter should be a function of "CoreLogic.PlaygroundWidth" and "CoreLogic.PlaygroundHeight".
@@ -108,6 +104,8 @@ namespace Snake
 
                 DrawCounter = 0;
 
+                txtBox_Info.Text = $"Playground: Width: {CoreLogic.PlaygroundWidth}, Height: {CoreLogic.PlaygroundHeight}\r\n";
+
                 ShowHamiltonianCycle();
                 CoreLogicWrapper();
             }
@@ -120,14 +118,11 @@ namespace Snake
             {
                 InitPlayground(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight);
 
-                var hamiltonianCycle = new HamiltonianCycle();
-                var data = hamiltonianCycle.GetHamiltonianCycle(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundWidth);
-
                 var currentPosition = new Point(0, 0);
                 do
                 {
                     DrawOneRectangle(currentPosition, PenHamiltonianCycle);
-                    switch (data[currentPosition.X, currentPosition.Y])
+                    switch (CoreLogic.HamiltonianCycleMoveDirections[currentPosition.X, currentPosition.Y])
                     {
                         case HamiltonianCycle.MoveDirection.Up:
                             currentPosition.Y--;
@@ -153,7 +148,7 @@ namespace Snake
                 // Controls are handled here to avoid a "cross-thread" error.
                 if (!IsUserInterrupted)
                 {
-                    Log("Start main logic");
+                    Log("Done.\r\nStart main logic");
                 }
 
                 IsHamiltonianCycleShown = true;
@@ -195,7 +190,7 @@ namespace Snake
                     }
                     if (!coreLogicReturns.IslogicalEndReached)
                     {
-                        Thread.Sleep(20);
+                        Thread.Sleep(10);
                     }
                 } while (!coreLogicReturns.IslogicalEndReached && IsAppRunning);
             }).ContinueWith(result =>

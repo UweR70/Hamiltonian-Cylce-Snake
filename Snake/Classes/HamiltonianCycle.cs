@@ -8,7 +8,7 @@ namespace Snake.Classes
     {
         public enum MoveDirection
         {
-            AAAAA = 0,          // "AAAAA" and "CCCCC" used to visual see during developemnt whether all list items got a well assigned enum value or not.
+            AAAAA = 0,          // ToDo: Uwe: "AAAAA" and "CCCCC" used to visual see during developemnt whether all list items got a well assigned enum value or not.
             Up,
             Left,
             Down,
@@ -137,6 +137,7 @@ namespace Snake.Classes
                     }
                 }
             }
+            ShowHamiltonianCycle(width, height, ret);
             return ret;
         }
 
