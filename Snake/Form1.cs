@@ -17,7 +17,7 @@ namespace Snake
             Snake
         }
 
-        private CoreLogic CoreLogic;
+        private GameLogic CoreLogic;
 
         private bool IsAppRunning;
         private bool IsUserInterrupted;
@@ -76,7 +76,7 @@ namespace Snake
                 IsHamiltonianCycleShown = false;
                 IsUserInterrupted = false;
 
-                CoreLogic = new CoreLogic();
+                CoreLogic = new GameLogic();
 
                 // ToDo: Uwe: The next four parameter should be a function of the playground width and height.
                 SquareWidth = 20;
@@ -107,7 +107,7 @@ namespace Snake
                     "Used colors:\r\n" +
                     "\tdark khaki = Hamiltonian Cyvle\r\n" +
                     "\r\n" +
-                    "\tblack = Palyground\r\n" +
+                    "\tblack = Playground\r\n" +
                     "\tred = Apple\r\n" +
                     "\tblue = Snake head\r\n" +
                     "\tgreen = Snake body\r\n" +
@@ -119,8 +119,8 @@ namespace Snake
                     "\t(40x40 for display reasons only)\r\n" +
                     "\r\n" +
                     "Current playground dimensions:\r\n" +
-                    $"\tWidth: {CoreLogic.PlaygroundWidth},\r\n" +
-                    $"\tHeight: {CoreLogic.PlaygroundHeight}\r\n" +
+                    $"\tWidth: {GameLogic.PlaygroundWidth},\r\n" +
+                    $"\tHeight: {GameLogic.PlaygroundHeight}\r\n" +
                     "\r\n";                   
 
                 ShowHamiltonianCycle();
@@ -133,7 +133,7 @@ namespace Snake
             Log("The Hamiltonian Cycle will be displayed.");
             var taskA = Task.Factory.StartNew(() =>
             {
-                InitPlayground(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight);
+                InitPlayground(GameLogic.PlaygroundWidth, GameLogic.PlaygroundHeight);
 
                 var currentPosition = new Point(0, 0);
                 do
@@ -186,9 +186,9 @@ namespace Snake
                 {
                     return;
                 }
-                InitPlayground(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight);
+                InitPlayground(GameLogic.PlaygroundWidth, GameLogic.PlaygroundHeight);
 
-                var coreLogicReturns = new CoreLogic.ReturnData();
+                var coreLogicReturns = new GameLogic.ReturnData();
                 do
                 {
                     coreLogicReturns = CoreLogic.Main();
@@ -237,7 +237,7 @@ namespace Snake
 
         private void InitPlayground(int playgroundWidth, int playgroundHeight)
         {
-            CurrentColors = new Color[CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight];   // Init
+            CurrentColors = new Color[GameLogic.PlaygroundWidth, GameLogic.PlaygroundHeight];   // Init
             for (int h = 0; h < playgroundHeight; h++)
             {
                 for (int w = 0; w < playgroundWidth; w++)

@@ -6,10 +6,10 @@ using static Snake.Classes.HamiltonianCycle;
 
 namespace Snake.Classes
 {
-    public class CoreLogic
+    public class GameLogic
     {
-        public const int PlaygroundWidth = 6;
-        public const int PlaygroundHeight = 6;
+        public const int PlaygroundWidth = 10;
+        public const int PlaygroundHeight = 10;
 
         private readonly HamiltonianCycle HamiltonianCycle;
         public readonly HamiltonianCycle.MoveDirection[,] HamiltonianCycleMoveDirections;
@@ -24,7 +24,7 @@ namespace Snake.Classes
         }
         public ReturnData ReturnDatas;
         
-        public CoreLogic()
+        public GameLogic()
         {
             HamiltonianCycle = new HamiltonianCycle();
             HamiltonianCycleMoveDirections = HamiltonianCycle.GetHamiltonianCycle(PlaygroundWidth, PlaygroundHeight);
