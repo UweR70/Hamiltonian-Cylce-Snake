@@ -42,7 +42,7 @@
             // btn_Start
             // 
             this.btn_Start.Location = new System.Drawing.Point(269, 15);
-            this.btn_Start.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_Start.Margin = new System.Windows.Forms.Padding(6);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(208, 65);
             this.btn_Start.TabIndex = 0;
@@ -54,7 +54,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Location = new System.Drawing.Point(490, 20);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1623, 1634);
             this.panel1.TabIndex = 1;
@@ -63,7 +63,7 @@
             // 
             this.txtBox_Info.Enabled = false;
             this.txtBox_Info.Location = new System.Drawing.Point(15, 102);
-            this.txtBox_Info.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtBox_Info.Margin = new System.Windows.Forms.Padding(6);
             this.txtBox_Info.Multiline = true;
             this.txtBox_Info.Name = "txtBox_Info";
             this.txtBox_Info.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -97,18 +97,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 25);
+            this.label1.Size = new System.Drawing.Size(167, 25);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Palyground width";
+            this.label1.Text = "Playground width:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 25);
+            this.label2.Size = new System.Drawing.Size(175, 25);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Playground height";
+            this.label2.Text = "Playground height:";
             // 
             // numUpDown_Height
             // 
@@ -145,7 +145,7 @@
             this.Controls.Add(this.txtBox_Info);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
