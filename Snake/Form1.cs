@@ -57,9 +57,8 @@ namespace Snake
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            // ToDo: UWe: Remove this after testing!
-            new HamiltonianCycle().Test(); // ############################################################################
-            
+            // new HamiltonianCycle().Test(); // ToDo: UWe: Remove this after testing!
+
             if (IsAppRunning)
             {
                 btn_Start.Text = "Start";
@@ -79,7 +78,7 @@ namespace Snake
 
                 CoreLogic = new CoreLogic();
 
-                // ToDo: Uwe: The next four parameter should be a function of "CoreLogic.PlaygroundWidth" and "CoreLogic.PlaygroundHeight".
+                // ToDo: Uwe: The next four parameter should be a function of the playground width and height.
                 SquareWidth = 20;
                 SquareHeight = 20;
                 SquareDeltaX = 2;
