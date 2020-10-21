@@ -64,6 +64,7 @@
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\CoreLogic.cs" />
+    <Compile Include="Classes\HamiltonianCycle.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

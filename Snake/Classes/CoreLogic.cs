@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -30,6 +31,19 @@ namespace Snake.Classes
         
         public CoreLogic()
         {
+            if (PlaygroundWidth < 2)
+            {
+                throw new Exception("'PlaygroundWidth' must be equal or greater than 2!");
+            }
+            if (PlaygroundHeight < 2)
+            {
+                throw new Exception("'PlaygroundHeight' must be equal or greater than 2!");
+            }
+            if (!IsValueEven(PlaygroundWidth) && !IsValueEven(PlaygroundHeight))
+            {
+                throw new Exception("Both 'PlaygroundWidth' and 'PlaygroundHeight' can not be odd at the same time!");
+            }
+
             ReturnDatas = new ReturnData
             {
                 ResetThesePositions = new List<Point>(),
@@ -55,56 +69,48 @@ namespace Snake.Classes
 
             ReturnDatas.ResetThesePositions = new List<Point>();
 
-            if (PlaygroundWidth >= PlaygroundHeight)
-            { 
-                // Case 1:
-                if (ReturnDatas.SnakePositions[0].X == 0)
-                {
-                    if (ReturnDatas.SnakePositions[0].Y < PlaygroundHeight - 1)
-                    { 
-                        MoveSnake(MoveDirection.Down);
-                    } else
-                    { 
-                        MoveSnake(MoveDirection.Right); 
-                    }
-                }
-                else
-                {
-                    if (IsValueEven(ReturnDatas.SnakePositions[0].Y))
-                    {
-                        // row = 0, 2, 4, 6, ...
-                        if (ReturnDatas.SnakePositions[0].X > 1 ) 
-                        {
-                            MoveSnake(MoveDirection.Left);
-                        } 
-                        else
-                        {
-                            if (ReturnDatas.SnakePositions[0].Y > 0)
-                            {
-                                MoveSnake(MoveDirection.Up);
-                            }
-                            else
-                            {
-                                MoveSnake(MoveDirection.Left);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        // row = 1, 3, 5, 7, ...
-                        if (ReturnDatas.SnakePositions[0].X < PlaygroundWidth - 1)   // "... - 1 " becasue its zero base counted!
-                        {
-                            MoveSnake(MoveDirection.Right);
-                        } else
-                        {
-                            MoveSnake(MoveDirection.Up);
-                        }
-                    }
+            if (ReturnDatas.SnakePositions[0].X == 0)
+            {
+                if (ReturnDatas.SnakePositions[0].Y < PlaygroundHeight - 1)
+                { 
+                    MoveSnake(MoveDirection.Down);
+                } else
+                { 
+                    MoveSnake(MoveDirection.Right); 
                 }
             }
             else
             {
-
+                if (IsValueEven(ReturnDatas.SnakePositions[0].Y))
+                {
+                    // row = 0, 2, 4, 6, ...
+                    if (ReturnDatas.SnakePositions[0].X > 1 ) 
+                    {
+                        MoveSnake(MoveDirection.Left);
+                    } 
+                    else
+                    {
+                        if (ReturnDatas.SnakePositions[0].Y > 0)
+                        {
+                            MoveSnake(MoveDirection.Up);
+                        }
+                        else
+                        {
+                            MoveSnake(MoveDirection.Left);
+                        }
+                    }
+                }
+                else
+                {
+                    // row = 1, 3, 5, 7, ...
+                    if (ReturnDatas.SnakePositions[0].X < PlaygroundWidth - 1)   // "... - 1 " becasue its zero base counted!
+                    {
+                        MoveSnake(MoveDirection.Right);
+                    } else
+                    {
+                        MoveSnake(MoveDirection.Up);
+                    }
+                }
             }
             return ReturnDatas;
         }

@@ -42,6 +42,8 @@ namespace Snake
         private int SquareDeltaX;
         private int SquareDeltaY;
 
+        private Color[,] CurrentColors;
+
         private int DrawCounter;
 
         public Form1()
@@ -56,12 +58,19 @@ namespace Snake
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
+            // ToDo: UWe: Remove this after testing!
+            var test = new HamiltonianCycle(); // ############################################################################
+            test.Test();
+
+
             if (IsAppRunning)
             {
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
 
                 IsUserInterrupted = true;
+
+                CurrentColors = null;
             }
             else
             {
@@ -110,23 +119,36 @@ namespace Snake
             Log("The Hamiltonian Cycle will be displayed.");
             var taskA = Task.Factory.StartNew(() =>
             {
-                var hamiltonianCycle = CoreLogic.GetHamiltonianCycle();
+                var hamiltonianCycle = new HamiltonianCycle();
+                var data = hamiltonianCycle.GetHamiltonianCycle(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundWidth);
 
                 InitPlayground(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight);
 
-                // Draw all at once
-                // DrawPositions(hamiltonianCycle, DrawItem.Apple);
-                // Draw cell by cell
-                for (int i = 0; i < hamiltonianCycle.Count; i++)
+                var currentPosition = new Point(0, 0);
+                do
                 {
-                    if (IsUserInterrupted)
+                    DrawOneRectangle(currentPosition, PenHamiltonianCycle);
+                    switch (data[currentPosition.X, currentPosition.Y])
                     {
+                        case HamiltonianCycle.MoveDirection.Up:
+                            currentPosition.Y--;
+                            break;
+                        case HamiltonianCycle.MoveDirection.Left:
+                            currentPosition.X--;
+                            break;
+                        case HamiltonianCycle.MoveDirection.Down:
+                            currentPosition.Y++;
+                            break;
+                        case HamiltonianCycle.MoveDirection.Right:
+                            currentPosition.X++;
+                            break;
+                    }
+                    if((currentPosition.X == 0 && currentPosition.Y == 0) || IsUserInterrupted)
+                    { 
                         break;
                     }
-                    var point = ConvertArrayIndecesToGraphicalCoordiantes(hamiltonianCycle[i]);
-                    DrawOneRectangle(point, PenHamiltonianCycle);
-                    Thread.Sleep(20);
-                }
+                    Thread.Sleep(15);
+                } while (true);
             }).ContinueWith(result =>
             {
                 // Controls are handled here to avoid a "cross-thread" error.
@@ -169,12 +191,13 @@ namespace Snake
                     }
 
                     if (coreLogicReturns.ApplePosition != null && !coreLogicReturns.IslogicalEndReached)
-
                     {
-                        var point = ConvertArrayIndecesToGraphicalCoordiantes(coreLogicReturns.ApplePosition);
-                        DrawOneRectangle(point, PenApple);
+                        DrawOneRectangle(coreLogicReturns.ApplePosition, PenApple);
                     }
-                    //Thread.Sleep(50);
+                    if (!coreLogicReturns.IslogicalEndReached)
+                    {
+                        Thread.Sleep(20);
+                    }
                 } while (!coreLogicReturns.IslogicalEndReached && IsAppRunning);
             }).ContinueWith(result =>
             {
@@ -202,28 +225,35 @@ namespace Snake
 
         private void InitPlayground(int playgroundWidth, int playgroundHeight)
         {
+            CurrentColors = new Color[CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight];   // Init
             for (int h = 0; h < playgroundHeight; h++)
             {
                 for (int w = 0; w < playgroundWidth; w++)
                 {
-                    var point = ConvertArrayIndecesToGraphicalCoordiantes(new Point { X = w, Y = h });
-                    DrawOneRectangle(point, PenPlayground);
+                    DrawOneRectangle(new Point { X = w, Y = h }, PenPlayground);
                 }
             }
         }
 
-        private Point ConvertArrayIndecesToGraphicalCoordiantes(Point point)
+        private Point ConvertArrayIndecesToGraphicalCoordiantes(Point graphicalPoint)
         {
             return new Point { 
-                X = SquareDeltaX + (SquareDeltaX + SquareWidth) * point.X, 
-                Y = SquareDeltaY + (SquareDeltaY + SquareHeight) * point.Y
+                X = SquareDeltaX + (SquareDeltaX + SquareWidth) * graphicalPoint.X, 
+                Y = SquareDeltaY + (SquareDeltaY + SquareHeight) * graphicalPoint.Y
             };
         }
 
-        private void DrawOneRectangle(Point point, Pen pen)
+        private void DrawOneRectangle(Point arrayIndex, Pen pen)
         {
-            Square.X = point.X;
-            Square.Y = point.Y;
+            if (CurrentColors[arrayIndex.X, arrayIndex.Y] == pen.Color)
+            {
+                return;
+            }
+            CurrentColors[arrayIndex.X, arrayIndex.Y] = pen.Color;
+
+            var graphicalPoint = ConvertArrayIndecesToGraphicalCoordiantes(arrayIndex);
+            Square.X = graphicalPoint.X;
+            Square.Y = graphicalPoint.Y;
             Graphics.DrawRectangle(pen, Square);
             SolidBrush.Color = pen.Color;
             Graphics.FillRectangle(SolidBrush, Square);
@@ -253,12 +283,10 @@ namespace Snake
                     if (pointList.Count > 1)
                     {
                         // Head
-                        var point = ConvertArrayIndecesToGraphicalCoordiantes(pointList[0]);
-                        DrawOneRectangle(point, PenSnakeHead);
+                        DrawOneRectangle(pointList[0], PenSnakeHead);
 
                         // Tail
-                        point = ConvertArrayIndecesToGraphicalCoordiantes(pointList[pointList.Count - 1]);
-                        DrawOneRectangle(point, PenSnakeTail);
+                        DrawOneRectangle(pointList[pointList.Count - 1], PenSnakeTail);
 
                         if (pointList.Count == 2)
                         { 
@@ -287,8 +315,7 @@ namespace Snake
            
             for (int i = loopFrom; i < loopTo; i++)
             {
-                var point = ConvertArrayIndecesToGraphicalCoordiantes(pointList[i]);
-                DrawOneRectangle(point, pen);
+                DrawOneRectangle(pointList[i], pen);
             }
         }
 
