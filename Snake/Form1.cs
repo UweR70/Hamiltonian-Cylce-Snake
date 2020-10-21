@@ -10,8 +10,8 @@ namespace Snake
 {
     public partial class Form1 : Form
     {
-        public const int PlaygroundWidth = 10;
-        public const int PlaygroundHeight = 10;
+        public int PlaygroundWidth;
+        public int PlaygroundHeight;
 
         private enum DrawItem
         {
@@ -57,6 +57,52 @@ namespace Snake
         {
             this.Text = Config.TitleAppNameAndVersion;
         }
+        
+        private bool GetPlaygroundDimension()
+        {
+            var width = (int)numUpDown_Width.Value;
+            var height = (int)numUpDown_Height.Value;
+
+            var errorMessage = string.Empty;
+            if (width < 2)
+            {
+                errorMessage = 
+                    "The 'PlaygroundWidth' value\r\n" + 
+                    "must be equal or greater than 2!";
+            }
+            if (height < 2)
+            {
+                errorMessage = 
+                    "The 'PlaygroundHeight' value\r\n" + 
+                    "must be equal or greater than 2!";
+            }
+            if (width > 40)
+            {
+                errorMessage = 
+                    "The 'PlaygroundWidth' value must be less than\r\n" +
+                    "or equal to 40 for displaying reasons only!";
+            }
+            if (height > 40)
+            {
+                errorMessage = 
+                    "The 'PlaygroundHeight' value must be less than\r\n" +
+                    "or equal to 40 for displaying reasons only!";
+            }
+            if (!Common.IsValueEven(width) && !Common.IsValueEven(height))
+            {
+                errorMessage = 
+                    "Both 'PlaygroundWidth' and 'PlaygroundHeight'\r\n" + 
+                    "can not be odd at the same time!";
+            }
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show(errorMessage, Config.TitleAppNameAndVersion, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            PlaygroundWidth = width;
+            PlaygroundHeight = height;
+            return true;
+        }
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
@@ -64,6 +110,8 @@ namespace Snake
 
             if (IsAppRunning)
             {
+                numUpDown_Width.Enabled = numUpDown_Height.Enabled = true;
+
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
 
@@ -73,6 +121,14 @@ namespace Snake
             }
             else
             {
+                numUpDown_Width.Enabled = numUpDown_Height.Enabled = false;
+
+                if (!GetPlaygroundDimension())
+                {
+                    numUpDown_Width.Enabled = numUpDown_Height.Enabled = true;
+                    return;
+                }
+
                 btn_Start.Text = "Stop";
                 IsAppRunning = true;
 
@@ -157,12 +213,8 @@ namespace Snake
                             currentPosition.X++;
                             break;
                     }
-                    if((currentPosition.X == 0 && currentPosition.Y == 0) || IsUserInterrupted)
-                    { 
-                        break;
-                    }
                     Thread.Sleep(15);
-                } while (true);
+                } while (!(currentPosition.X == 0 && currentPosition.Y == 0) && !IsUserInterrupted);
             }).ContinueWith(result =>
             {
                 // Controls are handled here to avoid a "cross-thread" error.
