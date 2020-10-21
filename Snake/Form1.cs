@@ -118,10 +118,10 @@ namespace Snake
             Log("The Hamiltonian Cycle will be displayed.");
             var taskA = Task.Factory.StartNew(() =>
             {
+                InitPlayground(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight);
+
                 var hamiltonianCycle = new HamiltonianCycle();
                 var data = hamiltonianCycle.GetHamiltonianCycle(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundWidth);
-
-                InitPlayground(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundHeight);
 
                 var currentPosition = new Point(0, 0);
                 do

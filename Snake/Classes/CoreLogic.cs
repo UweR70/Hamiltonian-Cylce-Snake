@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using static Snake.Classes.HamiltonianCycle;
 
 namespace Snake.Classes
 {
@@ -11,13 +11,8 @@ namespace Snake.Classes
         public const int PlaygroundWidth = 10;
         public const int PlaygroundHeight = 10;
 
-        public enum MoveDirection
-        {
-            Up = 0,
-            Left, 
-            Down, 
-            Right
-        }
+        private HamiltonianCycle HamiltonianCycle;
+        private HamiltonianCycle.MoveDirection[,] HamiltonianCycleMoveDirections;
 
         public class ReturnData
         {
@@ -31,18 +26,8 @@ namespace Snake.Classes
         
         public CoreLogic()
         {
-            if (PlaygroundWidth < 2)
-            {
-                throw new Exception("'PlaygroundWidth' must be equal or greater than 2!");
-            }
-            if (PlaygroundHeight < 2)
-            {
-                throw new Exception("'PlaygroundHeight' must be equal or greater than 2!");
-            }
-            if (!IsValueEven(PlaygroundWidth) && !IsValueEven(PlaygroundHeight))
-            {
-                throw new Exception("Both 'PlaygroundWidth' and 'PlaygroundHeight' can not be odd at the same time!");
-            }
+            HamiltonianCycle = new HamiltonianCycle();
+            HamiltonianCycleMoveDirections = HamiltonianCycle.GetHamiltonianCycle(CoreLogic.PlaygroundWidth, CoreLogic.PlaygroundWidth);
 
             ReturnDatas = new ReturnData
             {
@@ -62,56 +47,17 @@ namespace Snake.Classes
         {
             if (ReturnDatas.ApplePosition.X == -1)
             {
-                // Init situation: Set init positions for the apple.
+                // Init situation: Set apple init position.
                 ReturnDatas.ApplePosition = GetNewApplePosition();
                 return ReturnDatas;
             }
 
             ReturnDatas.ResetThesePositions = new List<Point>();
 
-            if (ReturnDatas.SnakePositions[0].X == 0)
-            {
-                if (ReturnDatas.SnakePositions[0].Y < PlaygroundHeight - 1)
-                { 
-                    MoveSnake(MoveDirection.Down);
-                } else
-                { 
-                    MoveSnake(MoveDirection.Right); 
-                }
-            }
-            else
-            {
-                if (IsValueEven(ReturnDatas.SnakePositions[0].Y))
-                {
-                    // row = 0, 2, 4, 6, ...
-                    if (ReturnDatas.SnakePositions[0].X > 1 ) 
-                    {
-                        MoveSnake(MoveDirection.Left);
-                    } 
-                    else
-                    {
-                        if (ReturnDatas.SnakePositions[0].Y > 0)
-                        {
-                            MoveSnake(MoveDirection.Up);
-                        }
-                        else
-                        {
-                            MoveSnake(MoveDirection.Left);
-                        }
-                    }
-                }
-                else
-                {
-                    // row = 1, 3, 5, 7, ...
-                    if (ReturnDatas.SnakePositions[0].X < PlaygroundWidth - 1)   // "... - 1 " becasue its zero base counted!
-                    {
-                        MoveSnake(MoveDirection.Right);
-                    } else
-                    {
-                        MoveSnake(MoveDirection.Up);
-                    }
-                }
-            }
+            var snakesHeadPosition = ReturnDatas.SnakePositions[0];
+            var nextMoveDirection = HamiltonianCycleMoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
+            MoveSnake(nextMoveDirection);
+
             return ReturnDatas;
         }
 
