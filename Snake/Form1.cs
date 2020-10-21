@@ -121,6 +121,7 @@ namespace Snake
             }
             else
             {
+                panel1.Refresh();
                 numUpDown_Width.Enabled = numUpDown_Height.Enabled = false;
 
                 if (!GetPlaygroundDimension())
@@ -287,6 +288,7 @@ namespace Snake
                 
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
+                numUpDown_Width.Enabled = numUpDown_Height.Enabled = true;
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
