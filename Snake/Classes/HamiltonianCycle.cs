@@ -8,7 +8,7 @@ namespace Snake.Classes
     {
         public enum MoveDirection
         {
-            AAAAA = 0,          // ToDo: Uwe: "AAAAA" and "CCCCC" used to visual see during developemnt whether all list items got a well assigned enum value or not.
+            AAAAA = 0,          // ToDo: "AAAAA" and "CCCCC" used to visual see during developemnt whether all list items got a well assigned enum value or not.
             Up,
             Left,
             Down,
@@ -144,7 +144,72 @@ namespace Snake.Classes
         private MoveDirection[,] Case_2(int width, int height)
         {
             var ret = new MoveDirection[width, height];
-            // ToDo: Uwe: Implement it!
+            
+            // 1) Column 0
+            for (int y = 0; y < height - 1; y++)
+            {
+                ret[0, y] = MoveDirection.Down;
+            }
+            ret[0, height - 1] = MoveDirection.Right;
+
+            // 2) Last row
+            for (int x = 1; x < width - 1; x++)
+            {
+                if (Common.IsValueEven(x))
+                {
+                    ret[x, height - 1] = MoveDirection.Right;
+                }
+                else
+                { 
+                    ret[x, height - 1] = MoveDirection.Up; 
+                }
+            }
+
+            // 3) Last column 
+            ret[width - 1, 0] = MoveDirection.Left;
+            for (int y = 1; y < height; y++)
+            {
+                ret[width - 1, y] = MoveDirection.Up;
+            }
+
+            // 4) first two rows (y =0  and y = 1)
+            for (int x = 1; x < width - 1; x++)
+            {
+                ret[x, 0] = MoveDirection.Left;
+                if (Common.IsValueEven(x))
+                {
+                    ret[x, 1] = MoveDirection.Down;
+                }
+                else
+                {
+                    ret[x, 1] = MoveDirection.Right;
+                }
+            }
+
+            // 5) Two "inner" rows
+            //      height   (height - 2) / 2
+            //        2         0
+            //        4         1
+            //        6         2
+            //        8         3
+            //              ...     ...
+            var nTimes = (height - 2) / 2;
+            for (int n = 0; n < nTimes; n++)
+            {
+                
+                for (int x = 1; x < width - 1; x += 2)
+                {
+                    for (int y = 2; y < height - 1; y += 2)
+                    {
+                        ret[x, y] = MoveDirection. Up;
+                        ret[x + 1, y] = MoveDirection.Down;
+
+                        ret[x, y + 1] = MoveDirection.Up;
+                        ret[x + 1, y + 1] = MoveDirection.Down;
+                    }
+                }
+            }
+            ShowHamiltonianCycle(width, height, ret);
             return ret;
         }
 
@@ -167,22 +232,22 @@ namespace Snake.Classes
         {
             var TestData = new List<Size>
             {
-                // Data for case 1 (= x is even and y is even) 
-                //      and case 4 (= x is odd  and y is even)
-                new Size(2, 2), new Size(2, 4), new Size(2, 6),
-                new Size(3, 2), new Size(3, 4), new Size(3, 6),
-                new Size(4, 2), new Size(4, 4), new Size(4, 6),
+                //// Data for case 1 (= x is even and y is even) 
+                ////      and case 3 (= x is odd  and y is even)
+                //new Size(2, 2), new Size(2, 4), new Size(2, 6),
+                //new Size(3, 2), new Size(3, 4), new Size(3, 6),
+                //new Size(4, 2), new Size(4, 4), new Size(4, 6),
 
-                //// Data for case 2 ( = x is even and y is odd)
-                //new Size(2, 3), new Size(2, 5), new Size(2, 7),
-                //new Size(4, 3), new Size(4, 5), new Size(4, 7),
-                //new Size(6, 3), new Size(6, 5), new Size(6, 7),
+                // Data for case 2 ( = x is even and y is odd)
+                new Size(2, 3), new Size(2, 5), new Size(2, 7),
+                new Size(4, 3), new Size(4, 5), new Size(4, 7),
+                new Size(6, 3), new Size(6, 5), new Size(6, 7),
             };
 
             foreach (var item in TestData)
             {
                 var hamiltonianCycle = GetHamiltonianCycle(item.Width, item.Height);
-                ShowHamiltonianCycle(item.Width, item.Height, hamiltonianCycle);
+                // ShowHamiltonianCycle(item.Width, item.Height, hamiltonianCycle);
             }
         }
     }
