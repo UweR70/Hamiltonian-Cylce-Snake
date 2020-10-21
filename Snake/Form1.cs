@@ -59,9 +59,8 @@ namespace Snake
         private void btn_Start_Click(object sender, EventArgs e)
         {
             // ToDo: UWe: Remove this after testing!
-            var test = new HamiltonianCycle(); // ############################################################################
-            test.Test();
-
+            //var test = new HamiltonianCycle(); // ############################################################################
+            //test.Test();
 
             if (IsAppRunning)
             {
@@ -161,7 +160,7 @@ namespace Snake
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
         
-        public void CoreLogicWrapper()
+        private void CoreLogicWrapper()
         {
             var taskA = Task.Factory.StartNew(() =>
             {
@@ -235,30 +234,6 @@ namespace Snake
             }
         }
 
-        private Point ConvertArrayIndecesToGraphicalCoordiantes(Point graphicalPoint)
-        {
-            return new Point { 
-                X = SquareDeltaX + (SquareDeltaX + SquareWidth) * graphicalPoint.X, 
-                Y = SquareDeltaY + (SquareDeltaY + SquareHeight) * graphicalPoint.Y
-            };
-        }
-
-        private void DrawOneRectangle(Point arrayIndex, Pen pen)
-        {
-            if (CurrentColors[arrayIndex.X, arrayIndex.Y] == pen.Color)
-            {
-                return;
-            }
-            CurrentColors[arrayIndex.X, arrayIndex.Y] = pen.Color;
-
-            var graphicalPoint = ConvertArrayIndecesToGraphicalCoordiantes(arrayIndex);
-            Square.X = graphicalPoint.X;
-            Square.Y = graphicalPoint.Y;
-            Graphics.DrawRectangle(pen, Square);
-            SolidBrush.Color = pen.Color;
-            Graphics.FillRectangle(SolidBrush, Square);
-        }
-
         private void DrawPositions(List<Point> pointList, DrawItem drawItem)
         {
             /* Drawing the snake in a simple loop ends in a flickering tail due its "movement".
@@ -312,11 +287,35 @@ namespace Snake
                     break;
             }
 
-           
             for (int i = loopFrom; i < loopTo; i++)
             {
                 DrawOneRectangle(pointList[i], pen);
             }
+        }
+
+        private void DrawOneRectangle(Point arrayIndex, Pen pen)
+        {
+            if (CurrentColors[arrayIndex.X, arrayIndex.Y] == pen.Color)
+            {
+                return;
+            }
+            CurrentColors[arrayIndex.X, arrayIndex.Y] = pen.Color;
+
+            var graphicalPoint = ConvertArrayIndecesToGraphicalCoordiantes(arrayIndex);
+            Square.X = graphicalPoint.X;
+            Square.Y = graphicalPoint.Y;
+            Graphics.DrawRectangle(pen, Square);
+            SolidBrush.Color = pen.Color;
+            Graphics.FillRectangle(SolidBrush, Square);
+        }
+
+        private Point ConvertArrayIndecesToGraphicalCoordiantes(Point graphicalPoint)
+        {
+            return new Point
+            {
+                X = SquareDeltaX + (SquareDeltaX + SquareWidth) * graphicalPoint.X,
+                Y = SquareDeltaY + (SquareDeltaY + SquareHeight) * graphicalPoint.Y
+            };
         }
 
         private void Log(string message)
