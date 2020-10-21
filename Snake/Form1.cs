@@ -103,7 +103,25 @@ namespace Snake
 
                 DrawCounter = 0;
 
-                txtBox_Info.Text = $"Playground: Width: {CoreLogic.PlaygroundWidth}, Height: {CoreLogic.PlaygroundHeight}\r\n";
+                txtBox_Info.Text =
+                    "Used colors:\r\n" +
+                    "\tdark khaki = Hamiltonian Cyvle\r\n" +
+                    "\r\n" +
+                    "\tblack = Palyground\r\n" +
+                    "\tred = Apple\r\n" +
+                    "\tblue = Snake head\r\n" +
+                    "\tgreen = Snake body\r\n" +
+                    "\tyellow = Snake tail\r\n" +
+                    "\r\n" +
+                    "Possible playground dimensions:\r\n" +
+                    "\tMin. value is 2x2,\r\n" +
+                    "\tmax. value is 40x40\r\n" +
+                    "\t(40x40 for display reasons only)\r\n" +
+                    "\r\n" +
+                    "Current playground dimensions:\r\n" +
+                    $"\tWidth: {CoreLogic.PlaygroundWidth},\r\n" +
+                    $"\tHeight: {CoreLogic.PlaygroundHeight}\r\n" +
+                    "\r\n";                   
 
                 ShowHamiltonianCycle();
                 CoreLogicWrapper();
@@ -147,7 +165,8 @@ namespace Snake
                 // Controls are handled here to avoid a "cross-thread" error.
                 if (!IsUserInterrupted)
                 {
-                    Log("Done.\r\nStart main logic");
+                    Log("Done.");
+                    Log("Start main logic.");
                 }
 
                 IsHamiltonianCycleShown = true;
