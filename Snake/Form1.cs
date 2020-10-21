@@ -10,6 +10,9 @@ namespace Snake
 {
     public partial class Form1 : Form
     {
+        public const int PlaygroundWidth = 10;
+        public const int PlaygroundHeight = 10;
+
         private enum DrawItem
         {
             Playground = 0,
@@ -76,7 +79,7 @@ namespace Snake
                 IsHamiltonianCycleShown = false;
                 IsUserInterrupted = false;
 
-                CoreLogic = new GameLogic();
+                CoreLogic = new GameLogic(PlaygroundWidth, PlaygroundHeight);
 
                 // ToDo: Uwe: The next four parameter should be a function of the playground width and height.
                 SquareWidth = 20;
@@ -119,8 +122,8 @@ namespace Snake
                     "\t(40x40 for display reasons only)\r\n" +
                     "\r\n" +
                     "Current playground dimensions:\r\n" +
-                    $"\tWidth: {GameLogic.PlaygroundWidth},\r\n" +
-                    $"\tHeight: {GameLogic.PlaygroundHeight}\r\n" +
+                    $"\tWidth: {PlaygroundWidth},\r\n" +
+                    $"\tHeight: {PlaygroundHeight}\r\n" +
                     "\r\n";                   
 
                 ShowHamiltonianCycle();
@@ -133,7 +136,7 @@ namespace Snake
             Log("The Hamiltonian Cycle will be displayed.");
             var taskA = Task.Factory.StartNew(() =>
             {
-                InitPlayground(GameLogic.PlaygroundWidth, GameLogic.PlaygroundHeight);
+                InitPlayground(PlaygroundWidth, PlaygroundHeight);
 
                 var currentPosition = new Point(0, 0);
                 do
@@ -186,7 +189,7 @@ namespace Snake
                 {
                     return;
                 }
-                InitPlayground(GameLogic.PlaygroundWidth, GameLogic.PlaygroundHeight);
+                InitPlayground(PlaygroundWidth, PlaygroundHeight);
 
                 var coreLogicReturns = new GameLogic.ReturnData();
                 do
@@ -237,7 +240,7 @@ namespace Snake
 
         private void InitPlayground(int playgroundWidth, int playgroundHeight)
         {
-            CurrentColors = new Color[GameLogic.PlaygroundWidth, GameLogic.PlaygroundHeight];   // Init
+            CurrentColors = new Color[PlaygroundWidth, PlaygroundHeight];   // Init
             for (int h = 0; h < playgroundHeight; h++)
             {
                 for (int w = 0; w < playgroundWidth; w++)
