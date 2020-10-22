@@ -61,14 +61,14 @@ Combining (A) and (B) results in these facts:<br/>
   <li>
     The cases<br/>
     1 (x is even and y is even)<br/>
-    and
+    and<br/>
     3 (x is odd and y is even)<br/>
     can be represented with one Hamiltonian Cycle pattern.<br/>
   </li>
   <li>
     The case<br/>
     2 (x is even and y is odd)<br/><br/>
-    can be represented with another Hamiltonian Cycle pattern.
+    can be represented with another Hamiltonian Cycle pattern.<br/>
   </li>
   <li>
     The case<br/>
