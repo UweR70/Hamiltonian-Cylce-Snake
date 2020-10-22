@@ -16,7 +16,38 @@ However, my thought was that the Hamilton cycle ... <br/>
 So the seed were set ... and I started this project.<br/>
 <br/>
 
-# Enviroment
+# Thoughts
+
+
+<table style="width:10px; border: 1px red solid;">
+  <tr>
+    <th>case</th>
+    <th>x</th>
+    <th>y</th> 
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>even</td>
+    <td>even</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>even</td>
+    <td>odd</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>odd</td>
+    <td>even</td>
+  </tr>
+  <tr>
+  	<td>4</td>
+    <td>odd</td>
+    <td>odd</td>
+   </tr>
+</table>
+
+
 - 2-dimensional playground, with a width (x) and a height (y).
 - x and y values can be equal or not, reflecting a square or a rectangle.
 - Conslusion: The playground/square/rectangle is splitted in so called cells, define through pairs of x and y values.
