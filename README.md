@@ -60,6 +60,7 @@ From these simple rules it follows that the smallest playing field is one with t
 <br/>
 <br/>
 Combining (A) and (B) results in these facts:<br/>
+(Notice that the images are showing just some examples to give you the idea.)<br/>
 <ul>
   <li>
     The cases<br/>
@@ -91,4 +92,4 @@ Combining (A) and (B) results in these facts:<br/>
     <br/>
   </li>
 </ul>
-Notice that the images are showing just some examples to give you the idea.<br/>
+
