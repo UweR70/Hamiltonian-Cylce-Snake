@@ -64,16 +64,19 @@ Combining (A) and (B) results in these facts:<br/>
     and<br/>
     3 (x is odd and y is even)<br/>
     can be represented with one Hamiltonian Cycle pattern.<br/>
+    <br/>
   </li>
   <li>
     The case<br/>
-    2 (x is even and y is odd)<br/><br/>
+    2 (x is even and y is odd)<br/>
     can be represented with another Hamiltonian Cycle pattern.<br/>
+    <br/>
   </li>
   <li>
     The case<br/>
     4 (x is odd and y is odd)<br/>
     can not be represented with a Hamiltonian Cycle pattern.<br/>
     (See below for a possible solution by violating the Hamiltonia Cycle rule)<br/>
+    <br/>
   </li>
 </ul>
