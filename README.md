@@ -51,7 +51,7 @@ There are four cases:<br/>
 <br/>
 
 (B)<br/>
-A Hamiltonian Cylce is a path that hits <u>all</u> cells <u>exact once</u>.<br/>
+A Hamiltonian Cylce is a path that hits all cells exact once.<br/>
 <br/>
 The path starts and ends in the same cell.<br/>
 This is the reason why its called cycle and not path.<br/>
@@ -68,11 +68,15 @@ Combining (A) and (B) results in these facts:<br/>
     3 (x is odd and y is even)<br/>
     can be represented with one Hamiltonian Cycle pattern.<br/>
     <br/>
+    <img src="https://live.staticflickr.com/65535/50516580278_b87d37b579_c.jpg" style="width: 100px; height: 100px;"><br/>
+    <br/>
   </li>
   <li>
     The case<br/>
     2 (x is even and y is odd)<br/>
     can be represented with another Hamiltonian Cycle pattern.<br/>
+    <br/>
+    <img src="https://live.staticflickr.com/65535/50516580233_28a97487ac_w.jpg" style="width: 100px; height: 100px;"><br/>
     <br/>
   </li>
   <li>
