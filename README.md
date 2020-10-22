@@ -1,6 +1,6 @@
 # Hamiltonian-Cylce-Snake
 
-# Story:
+# Story
 This is all about the game Snake (https://en.wikipedia.org/wiki/Snake_(video_game_genre)),<br/>
 Hamilitonian Cycles (https://en.wikipedia.org/wiki/Hamiltonian_path)<br/>, and this YouTube(r) video<br/>
 <br/>
@@ -17,8 +17,9 @@ So the seed were set ... and I started this project.<br/>
 <br/>
 
 # Thoughts
-
-
+The playground is defined through width (or x) and height or y).<br/>
+There are four cases:<br/>
+<br/>
 <table style="width:10px; border: 1px red solid;">
   <tr>
     <th>case</th>
@@ -46,22 +47,9 @@ So the seed were set ... and I started this project.<br/>
     <td>odd</td>
    </tr>
 </table>
+<br/>
 
-
-- 2-dimensional playground, with a width (x) and a height (y).
-- x and y values can be equal or not, reflecting a square or a rectangle.
-- Conslusion: The playground/square/rectangle is splitted in so called cells, define through pairs of x and y values.
-- Four cases rose: 
--- 1) x is even, y is even
--- 2) x is even, y is odd
--- 3) x is odd, y is even
--- 4) x is odd, y is odd
-
-Hamiltonian Cylce in this enviroment:
-<ul>
-  <li>A path that hits all cells</li>
-  <li>exact once.</li>
-  <li>The path starts and ends in the same cell. This is the reason why its called cycle and not path.</li>
-  <li></li>
-</ul>
+A Hamiltonian Cylce is a path that hits all cells exact once.<br/>
+The path starts and ends in the same cell.<br/>
+This is the reason why its called cycle and not path.<br/>
 <br/>
