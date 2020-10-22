@@ -264,11 +264,8 @@ namespace Snake
                     {
                         DrawOneRectangle(coreLogicReturns.ApplePosition, PenApple);
                     }
-                    if (!coreLogicReturns.IslogicalEndReached)
-                    {
-                        Thread.Sleep(10);
-                    }
-                } while (!coreLogicReturns.IslogicalEndReached && IsAppRunning);
+                    Thread.Sleep(10);
+                } while (!coreLogicReturns.IslogicalEndReached && IsAppRunning && !IsUserInterrupted);
             }).ContinueWith(result =>
             {
                 // Controls are handled here to avoid a "cross-thread" error.

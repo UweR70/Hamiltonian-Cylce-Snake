@@ -56,7 +56,7 @@ namespace Snake.Classes
             }
 
             ReturnDatas.ResetThesePositions = new List<Point>();
-
+            
             var snakesHeadPosition = ReturnDatas.SnakePositions[0];
             var nextMoveDirection = HamiltonianCycleMoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
             MoveSnake(nextMoveDirection);
