@@ -87,7 +87,7 @@ Combining (A) and (B) results in these facts:<br/>
     can not be represented with a Hamiltonian Cycle pattern.<br/>
     (See below for a possible solution by violating the Hamiltonia Cycle rule)<br/>
     <br/>
-    <img src="https://live.staticflickr.com/65535/50517343671_60045b8617_n.jpg" style="width: 100px; height: 100px;"><br/>
+    <img src="https://live.staticflickr.com/65535/50517537862_ff6ba5b660_n.jpg" style="width: 100px; height: 100px;"><br/>
     <br/>
   </li>
 </ul>
