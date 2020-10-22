@@ -17,7 +17,8 @@ So the seed were set ... and I started this project.<br/>
 <br/>
 
 # Thoughts
-The playground is defined through width (or x) and height or (y).<br/>
+(A)<br/>
+The playground is defined through width (or x) and height (or y).<br/>
 There are four cases:<br/>
 
 <table style="width:10px; border: 1px red solid;">
@@ -49,7 +50,30 @@ There are four cases:<br/>
 </table>
 <br/>
 
+(B)<br/>
 A Hamiltonian Cylce is a path that hits all cells exact once.<br/>
 The path starts and ends in the same cell.<br/>
 This is the reason why its called cycle and not path.<br/>
 <br/>
+<br/>
+Combining (A) and (B) results in the fact that<br/>
+<ul>
+  <li>
+    The cases<br/>
+    1 (x is even and y is even)<br/>
+    and
+    3 (x is odd and y is even)<br/>
+    can be represented with one Hamiltonian Cycle pattern.
+  </li>
+  <li>
+    The case<br/>
+    2 (x is even and y is odd)<br/>
+    can be represented with another Hamiltonian Cycle pattern.
+  </li>
+  <li>
+    The case<br/>
+    4 (x is odd and y is odd)<br/>
+    can not be represented with a Hamiltonian Cycle pattern.<br/>
+    (in case the Hamiltonia Cycle rule is taken literly that the cylce must be 
+  </li>
+</ul>
