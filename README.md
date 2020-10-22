@@ -78,6 +78,8 @@ Combining (A) and (B) results in these facts:<br/>
     <br/>
     <img src="https://live.staticflickr.com/65535/50516580233_28a97487ac_w.jpg" style="width: 100px; height: 100px;"><br/>
     <br/>
+    Notice: Some (not all) repeating pattern are highlighted by adding bold borders.<br/>
+    <br/>
   </li>
   <li>
     The case<br/>
