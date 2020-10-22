@@ -54,6 +54,7 @@ There are four cases:<br/>
 A Hamiltonian Cylce is a path that hits all cells exact once.<br/>
 The path starts and ends in the same cell.<br/>
 This is the reason why its called cycle and not path.<br/>
+From these simple rules it follows that the smallest playing field is one with the dimension 2-by-2.<br/>
 <br/>
 <br/>
 Combining (A) and (B) results in these facts:<br/>
