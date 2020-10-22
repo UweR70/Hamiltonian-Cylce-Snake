@@ -56,24 +56,24 @@ The path starts and ends in the same cell.<br/>
 This is the reason why its called cycle and not path.<br/>
 <br/>
 <br/>
-Combining (A) and (B) results in the fact that<br/>
+Combining (A) and (B) results in these facts:<br/>
 <ul>
   <li>
     The cases<br/>
     1 (x is even and y is even)<br/>
     and
     3 (x is odd and y is even)<br/>
-    can be represented with one Hamiltonian Cycle pattern.
+    can be represented with one Hamiltonian Cycle pattern.<br/>
   </li>
   <li>
     The case<br/>
-    2 (x is even and y is odd)<br/>
+    2 (x is even and y is odd)<br/><br/>
     can be represented with another Hamiltonian Cycle pattern.
   </li>
   <li>
     The case<br/>
     4 (x is odd and y is odd)<br/>
     can not be represented with a Hamiltonian Cycle pattern.<br/>
-    (in case the Hamiltonia Cycle rule is taken literly that the cylce must be 
+    (See below for a possible solution by violating the Hamiltonia Cycle rule)<br/>
   </li>
 </ul>
