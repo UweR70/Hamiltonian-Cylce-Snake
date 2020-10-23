@@ -147,6 +147,11 @@ namespace Snake.Classes
             
         }
 
+        private void CalcShortCutForCase2(Point snakesHeadPosition, Point applePosition)
+        {
+            throw new Exception("Implement it!"); // ToDo: Impelent it!
+        }
+
         public ReturnData Main()
         {
             if (ReturnDatas.ApplePosition.X == -1)
@@ -175,12 +180,10 @@ namespace Snake.Classes
                         CalcShortCutForCase1And3(snakesHeadPosition, applePosition);
                         break;
                     case Case.Case_2:
-                        // CalcShortCutForCase2();
-                        throw new Exception("Implement it!");
-                        // break;
+                        CalcShortCutForCase2(snakesHeadPosition, applePosition);
+                        break;
                     default:
                         throw new Exception("Unknown case!");
-                        // break;
                 }
             }
             // may be a shortcut path exists now.
@@ -192,7 +195,7 @@ namespace Snake.Classes
                 ReturnDatas.ShotCutMoveDirections.RemoveAt(0);
             } else if (nextMoveDirection == MoveDirection.Init)
             {
-                // Seems, taht no short cut can be calculated, sothe standard Hamiltonian Cycle must be used
+                // Seems, that no short cut can be calculated, so the standard Hamiltonian Cycle must be used.
                 nextMoveDirection = HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
             }
             MoveSnake(nextMoveDirection);
