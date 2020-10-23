@@ -65,6 +65,7 @@
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\GameLogic.cs" />
     <Compile Include="Classes\HamiltonianCycle.cs" />
+    <Compile Include="Classes\ShortCut.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

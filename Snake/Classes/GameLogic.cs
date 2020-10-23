@@ -11,8 +11,10 @@ namespace Snake.Classes
         private int _PlayFieldWidth;
         private int _PlayFieldHeight;
 
-        private readonly HamiltonianCycle HamiltonianCycle;
+        public readonly HamiltonianCycle HamiltonianCycle;
         public readonly HamiltonianCycleData HamiltonianCycleData;
+
+        public ShortCut ShortCut;
 
         public class ReturnData
         {
@@ -33,6 +35,8 @@ namespace Snake.Classes
             HamiltonianCycle = new HamiltonianCycle();
             HamiltonianCycleData = HamiltonianCycle.GetHamiltonianCycleData(_PlayFieldWidth, _PlayFieldHeight);
 
+            ShortCut = new ShortCut();
+            
             ReturnDatas = new ReturnData
             {
                 ShotCutMoveDirections = new List<MoveDirection>(),
@@ -60,11 +64,11 @@ namespace Snake.Classes
                 new Point(3, 9),
                 new Point(2, 9),
 
-                new Point(2, 8),
-                new Point(2, 7),
+                //new Point(2, 8),
+                //new Point(2, 7),
 
-                new Point(1, 7),
-                new Point(1, 8),
+                //new Point(1, 7),
+                //new Point(1, 8),
 
                 new Point(1, 9),
 
@@ -94,64 +98,6 @@ namespace Snake.Classes
             };
         }
 
-
-        private void CalcShortCutForCase1And3(Point snakesHeadPosition, Point applePosition)
-        {
-            if (snakesHeadPosition.X > 0 && applePosition.X > 0 && snakesHeadPosition.Y > applePosition.Y)
-            {
-                ReturnDatas.ShotCutMoveDirections = new List<MoveDirection>();
-                //var stepToApple = snakesHeadPosition.Y - applePosition.Y - 1; // init 
-                for (int y = snakesHeadPosition.Y - 1; applePosition.Y < y; y--)
-                {
-                    ReturnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
-                }
-                // shortCutPath ends here exact the row with the apple.
-                if (snakesHeadPosition.X == applePosition.X)
-                {
-                    // snake head is directly unter the apple.
-                    ReturnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
-                }
-                else if (snakesHeadPosition.X < applePosition.X && HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Right)
-                {
-                    // Snake head is left from the apple
-                    // AND
-                    // snake head can be set in the row with the apple
-                    // because the then following non-shortcut path (aka "normal" Hamiltonian Cylce) is going to "guids" the snake to the apple.
-                    //
-                    // Note that the movement direction is determind via 
-                    // "... [snakesHeadPosition.X, applePosition.Y]" 
-                    // because the apple postion can be a position with the move direction is equal ".Up"!
-                    ReturnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
-                    //stepToApple++;
-                }
-                else if (snakesHeadPosition.X > applePosition.X && HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Left)
-                {
-                    // Snake head is left from the apple 
-                    // otherwise as before ...
-                    ReturnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
-                }
-
-
-                //if (snakesHeadPosition.Y > applePosition.Y)
-                //{
-                //    // snake head is mor e than one row und the row whicht includes the apple.
-                //    nextMoveDirection = MoveDirection.Up;
-                //}
-
-
-
-
-
-                var xCount = ReturnDatas.SnakePositions.Count(x => x.X > 0 && x.Y >= applePosition.Y && x.Y < snakesHeadPosition.Y);
-            }
-            
-        }
-
-        private void CalcShortCutForCase2(Point snakesHeadPosition, Point applePosition)
-        {
-            throw new Exception("Implement it!"); // ToDo: Impelent it!
-        }
-
         public ReturnData Main()
         {
             if (ReturnDatas.ApplePosition.X == -1)
@@ -159,7 +105,7 @@ namespace Snake.Classes
                 // Init situation: Set apple init position.
                 ReturnDatas.ApplePosition = GetNewApplePosition();
 
-                SetTestData();    // ToDo: Remove this line of code afgter testing! 
+                // SetTestData();    // ToDo: Remove this line of code afgter testing! 
 
                 return ReturnDatas;
             }
@@ -170,17 +116,15 @@ namespace Snake.Classes
 
 
             var nextMoveDirection = MoveDirection.Init;
-            var snakesHeadPosition = ReturnDatas.SnakePositions[0];
-            var applePosition = ReturnDatas.ApplePosition;
             if (ReturnDatas.ShotCutMoveDirections == null || ReturnDatas.ShotCutMoveDirections.Count == 0)
             {
                 switch (HamiltonianCycleData.Case)
                 {
                     case Case.Case_1_And_3:
-                        CalcShortCutForCase1And3(snakesHeadPosition, applePosition);
+                        ShortCut.CalcShortCutForCase1And3(ReturnDatas, HamiltonianCycleData);
                         break;
                     case Case.Case_2:
-                        CalcShortCutForCase2(snakesHeadPosition, applePosition);
+                        ShortCut.CalcShortCutForCase2(ReturnDatas, HamiltonianCycleData);
                         break;
                     default:
                         throw new Exception("Unknown case!");
@@ -196,6 +140,7 @@ namespace Snake.Classes
             } else if (nextMoveDirection == MoveDirection.Init)
             {
                 // Seems, that no short cut can be calculated, so the standard Hamiltonian Cycle must be used.
+                var snakesHeadPosition = ReturnDatas.SnakePositions[0];
                 nextMoveDirection = HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
             }
             MoveSnake(nextMoveDirection);
