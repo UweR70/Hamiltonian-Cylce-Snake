@@ -201,7 +201,7 @@ namespace Snake
                 do
                 {
                     DrawOneRectangle(currentPosition, PenHamiltonianCycle);
-                    switch (CoreLogic.HamiltonianCycleMoveDirections[currentPosition.X, currentPosition.Y])
+                    switch (CoreLogic.HamiltonianCycleData.MoveDirections[currentPosition.X, currentPosition.Y])
                     {
                         case HamiltonianCycle.MoveDirection.Up:
                             currentPosition.Y--;

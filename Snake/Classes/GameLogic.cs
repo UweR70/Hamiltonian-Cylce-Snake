@@ -12,11 +12,12 @@ namespace Snake.Classes
         private int _PlayFieldHeight;
 
         private readonly HamiltonianCycle HamiltonianCycle;
-        public readonly HamiltonianCycle.MoveDirection[,] HamiltonianCycleMoveDirections;
+        public readonly HamiltonianCycleData HamiltonianCycleData;
 
         public class ReturnData
         {
             public List<Point> ResetThesePositions; // "old" apple and snake positions
+            public List<MoveDirection> ShotCutMoveDirections;
             public List<Point> SnakePositions;
             public Point ApplePosition;
             public bool DrawApple;
@@ -30,10 +31,11 @@ namespace Snake.Classes
             _PlayFieldHeight = playFieldHeight;
 
             HamiltonianCycle = new HamiltonianCycle();
-            HamiltonianCycleMoveDirections = HamiltonianCycle.GetHamiltonianCycle(_PlayFieldWidth, _PlayFieldHeight);
+            HamiltonianCycleData = HamiltonianCycle.GetHamiltonianCycleData(_PlayFieldWidth, _PlayFieldHeight);
 
             ReturnDatas = new ReturnData
             {
+                ShotCutMoveDirections = new List<MoveDirection>(),
                 ResetThesePositions = new List<Point>(),
                 SnakePositions = new List<Point>
                 {
@@ -46,19 +48,153 @@ namespace Snake.Classes
             };
         }
 
+        private void SetTestData()
+        {
+            ReturnDatas.ResetThesePositions = new List<Point>();
+            ReturnDatas.ApplePosition = new Point(5, 5);
+            ReturnDatas.SnakePositions = new List<Point>() {
+                new Point(4, 7),     // head
+                new Point(4, 8),
+                new Point(4, 9),
+
+                new Point(3, 9),
+                new Point(2, 9),
+
+                new Point(2, 8),
+                new Point(2, 7),
+
+                new Point(1, 7),
+                new Point(1, 8),
+
+                new Point(1, 9),
+
+                new Point(0, 9),
+                new Point(0, 8),
+                new Point(0, 7),
+                new Point(0, 6),
+                new Point(0, 5),
+                new Point(0, 4),
+                new Point(0, 3),
+                new Point(0, 2),
+                new Point(0, 1),
+                new Point(0, 0),
+
+                new Point(1, 0), new Point(2, 0), new Point(3, 0), new Point(4, 0), new Point(5, 0), new Point(6, 0), new Point(7, 0), new Point(8, 0), new Point(9, 0),
+                new Point(9, 1), new Point(8, 1), new Point(7, 1), new Point(6, 1), new Point(5, 1), new Point(4, 1), new Point(3, 1), new Point(2, 1), new Point(1, 1),
+                new Point(1, 2), new Point(2, 2), new Point(3, 2), new Point(4, 2), new Point(5, 2), new Point(6, 2), new Point(7, 2), new Point(8, 2), new Point(9, 2),
+                new Point(9, 3), new Point(8, 3), new Point(7, 3), new Point(6, 3), new Point(5, 3), new Point(4, 3), new Point(3, 3), new Point(2, 3), new Point(1, 3),
+                new Point(1, 4), new Point(2, 4), new Point(3, 4), new Point(4, 4), new Point(5, 4), new Point(6, 4), new Point(7, 4), new Point(8, 4), 
+
+                new Point(8, 5),
+                new Point(8, 6),
+                new Point(8, 7),
+                new Point(8, 8),    // tail
+
+                // new Point(7, 8),// tail
+            };
+        }
+
+
+        private void CalcShortCutForCase1And3(Point snakesHeadPosition, Point applePosition)
+        {
+            if (snakesHeadPosition.X > 0 && applePosition.X > 0 && snakesHeadPosition.Y > applePosition.Y)
+            {
+                ReturnDatas.ShotCutMoveDirections = new List<MoveDirection>();
+                //var stepToApple = snakesHeadPosition.Y - applePosition.Y - 1; // init 
+                for (int y = snakesHeadPosition.Y - 1; applePosition.Y < y; y--)
+                {
+                    ReturnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
+                }
+                // shortCutPath ends here exact the row with the apple.
+                if (snakesHeadPosition.X == applePosition.X)
+                {
+                    // snake head is directly unter the apple.
+                    ReturnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
+                }
+                else if (snakesHeadPosition.X < applePosition.X && HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Right)
+                {
+                    // Snake head is left from the apple
+                    // AND
+                    // snake head can be set in the row with the apple
+                    // because the then following non-shortcut path (aka "normal" Hamiltonian Cylce) is going to "guids" the snake to the apple.
+                    //
+                    // Note that the movement direction is determind via 
+                    // "... [snakesHeadPosition.X, applePosition.Y]" 
+                    // because the apple postion can be a position with the move direction is equal ".Up"!
+                    ReturnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
+                    //stepToApple++;
+                }
+                else if (snakesHeadPosition.X > applePosition.X && HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Left)
+                {
+                    // Snake head is left from the apple 
+                    // otherwise as before ...
+                    ReturnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
+                }
+
+
+                //if (snakesHeadPosition.Y > applePosition.Y)
+                //{
+                //    // snake head is mor e than one row und the row whicht includes the apple.
+                //    nextMoveDirection = MoveDirection.Up;
+                //}
+
+
+
+
+
+                var xCount = ReturnDatas.SnakePositions.Count(x => x.X > 0 && x.Y >= applePosition.Y && x.Y < snakesHeadPosition.Y);
+            }
+            
+        }
+
         public ReturnData Main()
         {
             if (ReturnDatas.ApplePosition.X == -1)
             {
                 // Init situation: Set apple init position.
                 ReturnDatas.ApplePosition = GetNewApplePosition();
+
+                SetTestData();    // ToDo: Remove this line of code afgter testing! 
+
                 return ReturnDatas;
             }
 
             ReturnDatas.ResetThesePositions = new List<Point>();
-            
+
+
+
+
+            var nextMoveDirection = MoveDirection.Init;
             var snakesHeadPosition = ReturnDatas.SnakePositions[0];
-            var nextMoveDirection = HamiltonianCycleMoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
+            var applePosition = ReturnDatas.ApplePosition;
+            if (ReturnDatas.ShotCutMoveDirections == null || ReturnDatas.ShotCutMoveDirections.Count == 0)
+            {
+                switch (HamiltonianCycleData.Case)
+                {
+                    case Case.Case_1_And_3:
+                        CalcShortCutForCase1And3(snakesHeadPosition, applePosition);
+                        break;
+                    case Case.Case_2:
+                        // CalcShortCutForCase2();
+                        throw new Exception("Implement it!");
+                        // break;
+                    default:
+                        throw new Exception("Unknown case!");
+                        // break;
+                }
+            }
+            // may be a shortcut path exists now.
+
+            if (ReturnDatas.ShotCutMoveDirections.Count != 0)
+            {
+                // Minimum one short cut move direction exists. So it must be used!
+                nextMoveDirection = ReturnDatas.ShotCutMoveDirections[0];
+                ReturnDatas.ShotCutMoveDirections.RemoveAt(0);
+            } else if (nextMoveDirection == MoveDirection.Init)
+            {
+                // Seems, taht no short cut can be calculated, sothe standard Hamiltonian Cycle must be used
+                nextMoveDirection = HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
+            }
             MoveSnake(nextMoveDirection);
 
             return ReturnDatas;

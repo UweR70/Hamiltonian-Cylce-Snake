@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace Snake.Classes
 {
@@ -8,15 +9,26 @@ namespace Snake.Classes
     {
         public enum MoveDirection
         {
-            AAAAA = 0,          // ToDo: "AAAAA" and "CCCCC" used to visual see during developemnt whether all list items got a well assigned enum value or not.
+            Init = 0,   // Init is used to visualy see during developemnt whether all list items got a well assigned enum value or not.
             Up,
             Left,
             Down,
-            Right,
-            CCCCC
+            Right
         }
 
-        public MoveDirection[,] GetHamiltonianCycle(int playFieldWidth, int playFieldHeight)
+        public enum Case
+        {
+            Case_1_And_3 = 0,
+            Case_2
+        }
+
+        public class HamiltonianCycleData
+        {
+            public MoveDirection[,] MoveDirections;
+            public Case Case;
+        }
+        
+        public HamiltonianCycleData GetHamiltonianCycleData(int playFieldWidth, int playFieldHeight)
         {
             if (playFieldWidth < 2)
             {
@@ -47,11 +59,11 @@ namespace Snake.Classes
 
             if (Common.IsValueEven(playFieldHeight))
             {
-                return Case_1_and_3(playFieldWidth, playFieldHeight);
+                return new HamiltonianCycleData { MoveDirections = Case_1_and_3(playFieldWidth, playFieldHeight), Case = Case.Case_1_And_3 };
             }
             else if (Common.IsValueEven(playFieldWidth))
             {
-                return Case_2(playFieldWidth, playFieldHeight);
+                return new HamiltonianCycleData { MoveDirections = Case_2(playFieldWidth, playFieldHeight), Case = Case.Case_2 };
             }
             
             // Case 4
@@ -246,7 +258,7 @@ namespace Snake.Classes
 
             foreach (var item in TestData)
             {
-                var hamiltonianCycle = GetHamiltonianCycle(item.Width, item.Height);
+                var hamiltonianCycle = GetHamiltonianCycleData(item.Width, item.Height);
                 // ShowHamiltonianCycle(item.Width, item.Height, hamiltonianCycle);
             }
         }
