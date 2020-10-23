@@ -100,7 +100,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Playground width:";
+            this.label1.Text = "PlayField width:";
             // 
             // label2
             // 
@@ -110,7 +110,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Playground height:";
+            this.label2.Text = "PlayField height:";
             // 
             // numUpDown_Height
             // 

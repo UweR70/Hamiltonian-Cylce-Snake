@@ -10,12 +10,12 @@ namespace Snake
 {
     public partial class Form1 : Form
     {
-        public int PlaygroundWidth;
-        public int PlaygroundHeight;
+        public int PlayFieldWidth;
+        public int PlayFieldHeight;
 
         private enum DrawItem
         {
-            Playground = 0,
+            PlayField = 0,
             Apple, 
             Snake
         }
@@ -28,7 +28,7 @@ namespace Snake
 
         private Graphics Graphics;
 
-        private Pen PenPlayground;
+        private Pen PenPlayField;
         private Pen PenHamiltonianCycle;
         private Pen PenApple;
         private Pen PenSnakeHead;
@@ -58,7 +58,7 @@ namespace Snake
             this.Text = Config.TitleAppNameAndVersion;
         }
         
-        private bool GetPlaygroundDimension()
+        private bool GetPlayFieldDimension()
         {
             var width = (int)numUpDown_Width.Value;
             var height = (int)numUpDown_Height.Value;
@@ -67,31 +67,31 @@ namespace Snake
             if (width < 2)
             {
                 errorMessage = 
-                    "The 'PlaygroundWidth' value\r\n" + 
+                    "The 'PlayFieldWidth' value\r\n" + 
                     "must be equal or greater than 2!";
             }
             if (height < 2)
             {
                 errorMessage = 
-                    "The 'PlaygroundHeight' value\r\n" + 
+                    "The 'PlayFieldHeight' value\r\n" + 
                     "must be equal or greater than 2!";
             }
             if (width > 40)
             {
                 errorMessage = 
-                    "The 'PlaygroundWidth' value must be less than\r\n" +
+                    "The 'PlayFieldWidth' value must be less than\r\n" +
                     "or equal to 40 for displaying reasons only!";
             }
             if (height > 40)
             {
                 errorMessage = 
-                    "The 'PlaygroundHeight' value must be less than\r\n" +
+                    "The 'PlayFieldHeight' value must be less than\r\n" +
                     "or equal to 40 for displaying reasons only!";
             }
             if (!Common.IsValueEven(width) && !Common.IsValueEven(height))
             {
                 errorMessage = 
-                    "Both 'PlaygroundWidth' and 'PlaygroundHeight'\r\n" + 
+                    "Both 'PlayFieldWidth' and 'PlayFieldHeight'\r\n" + 
                     "can not be odd at the same time!";
             }
             if (!string.IsNullOrEmpty(errorMessage))
@@ -99,8 +99,8 @@ namespace Snake
                 MessageBox.Show(errorMessage, Config.TitleAppNameAndVersion, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            PlaygroundWidth = width;
-            PlaygroundHeight = height;
+            PlayFieldWidth = width;
+            PlayFieldHeight = height;
             return true;
         }
 
@@ -126,7 +126,7 @@ namespace Snake
                 panel1.Refresh();
                 numUpDown_Width.Enabled = numUpDown_Height.Enabled = false;
 
-                if (!GetPlaygroundDimension())
+                if (!GetPlayFieldDimension())
                 {
                     numUpDown_Width.Enabled = numUpDown_Height.Enabled = true;
                     return;
@@ -138,9 +138,9 @@ namespace Snake
                 IsHamiltonianCycleShown = false;
                 IsUserInterrupted = false;
 
-                CoreLogic = new GameLogic(PlaygroundWidth, PlaygroundHeight);
+                CoreLogic = new GameLogic(PlayFieldWidth, PlayFieldHeight);
 
-                // ToDo: The next four parameter should be a function of the playground width and height.
+                // ToDo: The next four parameter should be a function of the playField width and height.
                 SquareWidth = 20;
                 SquareHeight = 20;
                 SquareDeltaX = 2;
@@ -156,7 +156,7 @@ namespace Snake
                 
                 SolidBrush = new SolidBrush(Color.Empty);
 
-                PenPlayground = new Pen(Color.Black);
+                PenPlayField = new Pen(Color.Black);
                 PenHamiltonianCycle = new Pen(Color.DarkKhaki);
                 PenApple = new Pen(Color.Red);
                 PenSnakeHead = new Pen(Color.Blue);
@@ -169,20 +169,20 @@ namespace Snake
                     "Used colors:\r\n" +
                     "\tdark khaki = Hamiltonian Cyvle\r\n" +
                     "\r\n" +
-                    "\tblack = Playground\r\n" +
+                    "\tblack = PlayField\r\n" +
                     "\tred = Apple\r\n" +
                     "\tblue = Snake head\r\n" +
                     "\tgreen = Snake body\r\n" +
                     "\tyellow = Snake tail\r\n" +
                     "\r\n" +
-                    "Possible playground dimensions:\r\n" +
+                    "Possible playField dimensions:\r\n" +
                     "\tMin. value is 2x2,\r\n" +
                     "\tmax. value is 40x40\r\n" +
                     "\t(40x40 for display reasons only)\r\n" +
                     "\r\n" +
-                    "Current playground dimensions:\r\n" +
-                    $"\tWidth: {PlaygroundWidth},\r\n" +
-                    $"\tHeight: {PlaygroundHeight}\r\n" +
+                    "Current playField dimensions:\r\n" +
+                    $"\tWidth: {PlayFieldWidth},\r\n" +
+                    $"\tHeight: {PlayFieldHeight}\r\n" +
                     "\r\n";                   
 
                 ShowHamiltonianCycle();
@@ -195,7 +195,7 @@ namespace Snake
             Log("The Hamiltonian Cycle will be displayed.");
             var taskA = Task.Factory.StartNew(() =>
             {
-                InitPlayground(PlaygroundWidth, PlaygroundHeight);
+                InitPlayField(PlayFieldWidth, PlayFieldHeight);
 
                 var currentPosition = new Point(0, 0);
                 do
@@ -244,7 +244,7 @@ namespace Snake
                 {
                     return;
                 }
-                InitPlayground(PlaygroundWidth, PlaygroundHeight);
+                InitPlayField(PlayFieldWidth, PlayFieldHeight);
 
                 var coreLogicReturns = new GameLogic.ReturnData();
                 do
@@ -252,7 +252,7 @@ namespace Snake
                     coreLogicReturns = CoreLogic.Main();
                     if (coreLogicReturns.ResetThesePositions != null && coreLogicReturns.ResetThesePositions.Count > 0)
                     {
-                        DrawPositions(coreLogicReturns.ResetThesePositions, DrawItem.Playground);
+                        DrawPositions(coreLogicReturns.ResetThesePositions, DrawItem.PlayField);
                     }
 
                     if (coreLogicReturns.SnakePositions != null && coreLogicReturns.SnakePositions.Count > 0)
@@ -291,14 +291,14 @@ namespace Snake
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private void InitPlayground(int playgroundWidth, int playgroundHeight)
+        private void InitPlayField(int playFieldWidth, int playFieldHeight)
         {
-            CurrentColors = new Color[PlaygroundWidth, PlaygroundHeight];   // Init
-            for (int h = 0; h < playgroundHeight; h++)
+            CurrentColors = new Color[PlayFieldWidth, PlayFieldHeight];   // Init
+            for (int h = 0; h < playFieldHeight; h++)
             {
-                for (int w = 0; w < playgroundWidth; w++)
+                for (int w = 0; w < playFieldWidth; w++)
                 {
-                    DrawOneRectangle(new Point { X = w, Y = h }, PenPlayground);
+                    DrawOneRectangle(new Point { X = w, Y = h }, PenPlayField);
                 }
             }
         }
@@ -315,10 +315,10 @@ namespace Snake
             var loopFrom = 0;
             var loopTo = pointList.Count;
             
-            var pen = PenPlayground;
+            var pen = PenPlayField;
             switch (drawItem)
             {
-                case DrawItem.Playground:
+                case DrawItem.PlayField:
                     break;
                 case DrawItem.Apple:
                     pen = PenApple;
@@ -364,7 +364,7 @@ namespace Snake
 
         private void DrawOneRectangle(Point arrayIndex, Pen pen)
         {
-            if (CurrentColors[arrayIndex.X, arrayIndex.Y] == pen.Color)
+            if (CurrentColors == null || CurrentColors[arrayIndex.X, arrayIndex.Y] == pen.Color)
             {
                 return;
             }

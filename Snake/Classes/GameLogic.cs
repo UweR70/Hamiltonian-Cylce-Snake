@@ -8,8 +8,8 @@ namespace Snake.Classes
 {
     public class GameLogic
     {
-        private int _PlaygroundWidth;
-        private int _PlaygroundHeight;
+        private int _PlayFieldWidth;
+        private int _PlayFieldHeight;
 
         private readonly HamiltonianCycle HamiltonianCycle;
         public readonly HamiltonianCycle.MoveDirection[,] HamiltonianCycleMoveDirections;
@@ -24,13 +24,13 @@ namespace Snake.Classes
         }
         public ReturnData ReturnDatas;
         
-        public GameLogic(int playgroundWidth, int playgroundHeight)
+        public GameLogic(int playFieldWidth, int playFieldHeight)
         {
-            _PlaygroundWidth = playgroundWidth;
-            _PlaygroundHeight = playgroundHeight;
+            _PlayFieldWidth = playFieldWidth;
+            _PlayFieldHeight = playFieldHeight;
 
             HamiltonianCycle = new HamiltonianCycle();
-            HamiltonianCycleMoveDirections = HamiltonianCycle.GetHamiltonianCycle(_PlaygroundWidth, _PlaygroundHeight);
+            HamiltonianCycleMoveDirections = HamiltonianCycle.GetHamiltonianCycle(_PlayFieldWidth, _PlayFieldHeight);
 
             ReturnDatas = new ReturnData
             {
@@ -69,8 +69,8 @@ namespace Snake.Classes
             var r = new Random();
             return new Point
             { 
-                X = r.Next(0, _PlaygroundWidth), 
-                Y = r.Next(0, _PlaygroundHeight)
+                X = r.Next(0, _PlayFieldWidth), 
+                Y = r.Next(0, _PlayFieldHeight)
             };
         }
 
@@ -79,15 +79,15 @@ namespace Snake.Classes
             var applePositionCandidate = new Point();
             int magicNumber = 70;
 
-            if (ReturnDatas.SnakePositions.Count >= (_PlaygroundWidth * _PlaygroundHeight) * magicNumber / 100)
+            if (ReturnDatas.SnakePositions.Count >= (_PlayFieldWidth * _PlayFieldHeight) * magicNumber / 100)
             {
-                // The snake captures more than <magicNumber> percent of the playground.
+                // The snake captures more than <magicNumber> percent of the playField.
                 // In this case makes it sense to store all positions where an apple can be set
                 // and get then by random a positon out of these positions.
                 var freePositions = new List<Point>();
-                for (int w = 0; w < _PlaygroundWidth; w++)
+                for (int w = 0; w < _PlayFieldWidth; w++)
                 {
-                    for (int h = 0; h < _PlaygroundHeight; h++)
+                    for (int h = 0; h < _PlayFieldHeight; h++)
                     {
                         if (!ReturnDatas.SnakePositions.Any(x => x.X == w && x.Y == h))
                         {
@@ -154,9 +154,9 @@ namespace Snake.Classes
                 // The head/snake moves into the apple.
                 // -> The tail will not be removed. 
                 // First: One item added to the snake, then here: No item removed from the snake. Result: Snake length will increase by one.
-                // But this happens only in case there is in the playground minimum one positions free (to set a new apple). 
+                // But this happens only in case there is in the playField minimum one positions free (to set a new apple). 
                 // Otherwise is the game over because no free place at all.
-                if (ReturnDatas.SnakePositions.Count < _PlaygroundWidth * _PlaygroundHeight)
+                if (ReturnDatas.SnakePositions.Count < _PlayFieldWidth * _PlayFieldHeight)
                 {
                     ReturnDatas.ApplePosition = GetNewApplePosition();
                     ReturnDatas.DrawApple = true;

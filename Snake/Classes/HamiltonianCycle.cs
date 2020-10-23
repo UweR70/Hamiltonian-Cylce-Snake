@@ -16,23 +16,23 @@ namespace Snake.Classes
             CCCCC
         }
 
-        public MoveDirection[,] GetHamiltonianCycle(int playgroundWidth, int playgroundHeight)
+        public MoveDirection[,] GetHamiltonianCycle(int playFieldWidth, int playFieldHeight)
         {
-            if (playgroundWidth < 2)
+            if (playFieldWidth < 2)
             {
-                throw new Exception("The 'PlaygroundWidth' value must be equal or greater than 2!");
+                throw new Exception("The 'PlayFieldWidth' value must be equal or greater than 2!");
             }
-            if (playgroundHeight < 2)
+            if (playFieldHeight < 2)
             {
-                throw new Exception("The 'PlaygroundHeight' value must be equal or greater than 2!");
+                throw new Exception("The 'PlayFieldHeight' value must be equal or greater than 2!");
             }
-            if (playgroundWidth > 40)
+            if (playFieldWidth > 40)
             {
-                throw new Exception("The 'PlaygroundWidth' value must be less than or equal to 40 for displaying reasons only!");
+                throw new Exception("The 'PlayFieldWidth' value must be less than or equal to 40 for displaying reasons only!");
             }
-            if (playgroundHeight > 40)
+            if (playFieldHeight > 40)
             {
-                throw new Exception("The 'PlaygroundHeight' value must be less than or equal to 40 for displaying reasons only!");
+                throw new Exception("The 'PlayFieldHeight' value must be less than or equal to 40 for displaying reasons only!");
             }
 
             // |------|------|------|
@@ -45,17 +45,17 @@ namespace Snake.Classes
             // | 4    | odd  | odd  | -> No Hamiltonian cycle possible 
             // |------|------|------|
 
-            if (Common.IsValueEven(playgroundHeight))
+            if (Common.IsValueEven(playFieldHeight))
             {
-                return Case_1_and_3(playgroundWidth, playgroundHeight);
+                return Case_1_and_3(playFieldWidth, playFieldHeight);
             }
-            else if (Common.IsValueEven(playgroundWidth))
+            else if (Common.IsValueEven(playFieldWidth))
             {
-                return Case_2(playgroundWidth, playgroundHeight);
+                return Case_2(playFieldWidth, playFieldHeight);
             }
             
             // Case 4
-            throw new Exception("Both 'PlaygroundWidth' and 'PlaygroundHeight' can not be odd at the same time!");
+            throw new Exception("Both 'PlayFieldWidth' and 'PlayFieldHeight' can not be odd at the same time!");
         }
 
         private MoveDirection[,] Case_1_and_3(int width, int height)
