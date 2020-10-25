@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using static Snake.Classes.GameLogic;
 using static Snake.Classes.HamiltonianCycle;
 
@@ -12,51 +11,60 @@ namespace Snake.Classes
             var snakesHeadPosition = returnDatas.SnakePositions[0];
             var applePosition = returnDatas.ApplePosition;
 
-            //for (int i = 0; i < returnDatas.SnakePositions.Count - 1; i++)
-            //{
-            //    var pointA = returnDatas.SnakePositions[i];
-            //    var pointB = returnDatas.SnakePositions[i+1];
-
-            //    if (HamiltonianCycleData.Data.PointSequence[pointA.X, pointA.Y] == 0 )
-            //    {
-            //        if (HamiltonianCycleData.Data.PointSequence[pointB.X, pointB.Y] != HamiltonianCycleData.Data.PointSequence.Length - 1)
-            //        {
-            //            return;
-            //        }
-
-            //    }
-            //    else if (HamiltonianCycleData.Data.PointSequence[pointA.X, pointA.Y] - 1 != HamiltonianCycleData.Data.PointSequence[pointB.X, pointB.Y])
-            //    {
-            //        return;
-            //    }
-            //}
-            // All parts of the snake are in the HamiltonianCycle.
-
-
-            if (snakesHeadPosition.X < 1 || snakesHeadPosition.Y < 1 || snakesHeadPosition.Y == applePosition.Y)
+            if (snakesHeadPosition.X < 1 || snakesHeadPosition.Y < 1)
             {
-                //             No need to calculate a shortcut because snakes head is already in
+                // No need to calculate a shortcut because snakes head is already in
                 // .X == 0  -> ... the column 0
-                // .Y == 0  -> ... a row that leads the snake to column 0
-                // .Y == .Y -> ... the row that contains the apple
+                // .Y == 0  -> ... the first row that leads the snake to column 0
                 return;
             }
 
-            // Separated because Linq is relatively slow.
-            var countInColumnZero = returnDatas.SnakePositions.Count(x => x.X == 0);
-            if (countInColumnZero > 0)
+            if (snakesHeadPosition.Y == applePosition.Y
+                && (
+                        // 
+                        (snakesHeadPosition.X < applePosition.X && HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y] == MoveDirection.Right)
+                        ||
+                        (snakesHeadPosition.X > applePosition.X && HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y] == MoveDirection.Left)
+                    )
+                )
             {
+                // No need to calculate a shortcut because snakes head is 
+                // already in the row that contains the apple
+                // and
+                // (    snakes head is left  from the apple and the snake movedirection is right towards the apple
+                //      or
+                //      snakes head is right from the apple and the snake movedirection is left towards the apple
+                // )
+
                 return;
             }
 
-            var countBelowApplesRow = returnDatas.SnakePositions.Count(x => x.Y < returnDatas.ApplePosition.Y);
-            var countAboveApplesRow = returnDatas.SnakePositions.Count(x => x.Y > returnDatas.ApplePosition.Y);
 
-            if (countBelowApplesRow == 0)
+            // Check whether all snake parts in the Hamiltonia Cycle. Leave if not.
+            for (int i = 0; i < returnDatas.SnakePositions.Count - 1; i++)
             {
-                // The snake is completely above the apple.
+                var pointA = returnDatas.SnakePositions[i];
+                var pointB = returnDatas.SnakePositions[i + 1];
+
+                if (HamiltonianCycleData.Data.PointSequence[pointA.X, pointA.Y] == 0)
+                {
+                    if (HamiltonianCycleData.Data.PointSequence[pointB.X, pointB.Y] != HamiltonianCycleData.Data.PointSequence.Length - 1)
+                    {
+                        return;
+                    }
+
+                }
+                else if (HamiltonianCycleData.Data.PointSequence[pointA.X, pointA.Y] - 1 != HamiltonianCycleData.Data.PointSequence[pointB.X, pointB.Y])
+                {
+                    return;
+                }
+            }
+            // All snake parts are in the Hamiltonian Cycle.
+            
+            if (snakesHeadPosition.Y > applePosition.Y)
+            {
+                // The snake is above the apple.
                 // The shortcut path to be calculated here should lead the snake one row below or in the row that contains the apple.
-                
                 for (int y = snakesHeadPosition.Y - 1; applePosition.Y < y; y--)
                 {
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
@@ -85,14 +93,20 @@ namespace Snake.Classes
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
             }
-            else if (countAboveApplesRow == 0)
-                // No need to generate a short cut in case snakesHeadPosition.Y is equal to zero because the snake is already on its way to column 0
+            else 
             {
-                // The snake is completely below the apple.
+                // The snake is below the apple.
                 // The snake should be leaded to column 0.
-                // if (!Common.IsValueEven(snakesHeadPosition.Y))
-                if( HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Right)
+                if (!Common.IsValueEven(snakesHeadPosition.Y))
                 {
+                    // Do not use:
+                    //      if (HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y] == MoveDirection.Right)
+                    // because the snake head can be in an odd row while it move direction is ".Up"!
+                    // Do also not use:
+                    //      if (HamiltonianCycleData.Data.MoveDirections[2, snakesHeadPosition.Y] == MoveDirection.Right)
+                    // becasue the min square size is 2-by-2
+                    // But this wpuld work:
+                    //      if (HamiltonianCycleData.Data.MoveDirections[1, snakesHeadPosition.Y] == MoveDirection.Right)
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
 
@@ -100,7 +114,7 @@ namespace Snake.Classes
                 {
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Left);
                 }
-            } 
+            }
         }
 
         public void CalcShortCutForCase2(ReturnData returnDatas, HamiltonianCycleData HamiltonianCycleData)

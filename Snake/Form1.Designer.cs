@@ -53,7 +53,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Location = new System.Drawing.Point(267, 11);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(886, 886);
             this.panel1.TabIndex = 1;
@@ -71,7 +71,7 @@
             // numUpDown_Width
             // 
             this.numUpDown_Width.Location = new System.Drawing.Point(107, 9);
-            this.numUpDown_Width.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numUpDown_Width.Margin = new System.Windows.Forms.Padding(2);
             this.numUpDown_Width.Maximum = new decimal(new int[] {
             40,
             0,
@@ -87,7 +87,7 @@
             this.numUpDown_Width.Size = new System.Drawing.Size(34, 20);
             this.numUpDown_Width.TabIndex = 3;
             this.numUpDown_Width.Value = new decimal(new int[] {
-            10,
+            36,
             0,
             0,
             0});
@@ -98,7 +98,7 @@
             this.label1.Location = new System.Drawing.Point(7, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "PlayField width:";
             // 
@@ -108,14 +108,14 @@
             this.label2.Location = new System.Drawing.Point(7, 29);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "PlayField height:";
             // 
             // numUpDown_Height
             // 
             this.numUpDown_Height.Location = new System.Drawing.Point(107, 28);
-            this.numUpDown_Height.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numUpDown_Height.Margin = new System.Windows.Forms.Padding(2);
             this.numUpDown_Height.Maximum = new decimal(new int[] {
             40,
             0,
@@ -131,7 +131,7 @@
             this.numUpDown_Height.Size = new System.Drawing.Size(34, 20);
             this.numUpDown_Height.TabIndex = 6;
             this.numUpDown_Height.Value = new decimal(new int[] {
-            10,
+            18,
             0,
             0,
             0});
@@ -149,7 +149,7 @@
             this.Controls.Add(this.txtBox_Info);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
