@@ -307,7 +307,7 @@ namespace Snake
             /* Drawing the snake in a simple loop ends in a flickering tail due its "movement".
              * Solution:
              * Draw snakes head, than the tail and than the body
-             * in case the snake has a tail (means snakes length is greater than 1) .
+             * in case the snake has a tail (means snakes length is greater than 1).
              * 
              * Further optimizations: Make the decision which pen should be used outside the loop.
              */

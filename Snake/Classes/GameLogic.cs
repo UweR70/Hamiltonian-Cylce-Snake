@@ -105,7 +105,7 @@ namespace Snake.Classes
                 // Init situation: Set apple init position.
                 ReturnDatas.ApplePosition = GetNewApplePosition();
 
-                // SetTestData();    // ToDo: Remove this line of code afgter testing! 
+                // SetTestData();    // ToDo: Remove this line of code after testing! 
 
                 return ReturnDatas;
             }
@@ -128,16 +128,16 @@ namespace Snake.Classes
                         throw new Exception("Unknown case!");
                 }
             }
-            // May be a shortcut path exists now.
 
+            // May be now exists a shortcut path.
             if (ReturnDatas.ShotCutMoveDirections.Count != 0)
             {
-                // Minimum one short cut move direction exists. So it must be used!
+                // Minimum one shortcut move direction exists. So it must be used!
                 nextMoveDirection = ReturnDatas.ShotCutMoveDirections[0];
                 ReturnDatas.ShotCutMoveDirections.RemoveAt(0);
             } else if (nextMoveDirection == MoveDirection.Init)
             {
-                // Seems, that no short cut can be calculated, so the standard Hamiltonian Cycle must be used.
+                // Seems, that no shortcut can be calculated, so the standard Hamiltonian Cycle must be used.
                 var snakesHeadPosition = ReturnDatas.SnakePositions[0];
                 nextMoveDirection = HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
             }

@@ -35,12 +35,10 @@ namespace Snake.Classes
                 //      or
                 //      snakes head is right from the apple and the snake movedirection is left towards the apple
                 // )
-
                 return;
             }
 
-
-            // Check whether all snake parts in the Hamiltonia Cycle. Leave if not.
+            // Check whether all snake parts are in the Hamiltonia Cycle. Leave if not.
             for (int i = 0; i < returnDatas.SnakePositions.Count - 1; i++)
             {
                 var pointA = returnDatas.SnakePositions[i];
@@ -69,10 +67,10 @@ namespace Snake.Classes
                 {
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
-                // The short cut path ends here exact the row with the apple. Check now whether snakes head can be lead additional in the row with the apple.
+                // The short cut path ends here exact below the row with the apple. Check now whether snakes head can be lead additional in the row with the apple.
                 if (snakesHeadPosition.X == applePosition.X)
                 {
-                    // Snakes head is directly unter the apple.
+                    // Snakes head is directly under the apple.
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
                 else if (snakesHeadPosition.X < applePosition.X && HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Right)
@@ -101,11 +99,11 @@ namespace Snake.Classes
                 {
                     // Do not use:
                     //      if (HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y] == MoveDirection.Right)
-                    // because the snake head can be in an odd row while it move direction is ".Up"!
+                    // because the snake head can be in an odd row while its move direction is ".Up"!
                     // Do also not use:
                     //      if (HamiltonianCycleData.Data.MoveDirections[2, snakesHeadPosition.Y] == MoveDirection.Right)
-                    // becasue the min square size is 2-by-2
-                    // But this wpuld work:
+                    // becasue the minimum square size is 2-by-2.
+                    // But this would work:
                     //      if (HamiltonianCycleData.Data.MoveDirections[1, snakesHeadPosition.Y] == MoveDirection.Right)
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
