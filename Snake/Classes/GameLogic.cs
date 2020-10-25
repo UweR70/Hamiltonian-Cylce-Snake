@@ -139,7 +139,7 @@ namespace Snake.Classes
             {
                 // Seems, that no short cut can be calculated, so the standard Hamiltonian Cycle must be used.
                 var snakesHeadPosition = ReturnDatas.SnakePositions[0];
-                nextMoveDirection = HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
+                nextMoveDirection = HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, snakesHeadPosition.Y];
             }
             MoveSnake(nextMoveDirection);
 

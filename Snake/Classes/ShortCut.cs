@@ -12,6 +12,27 @@ namespace Snake.Classes
             var snakesHeadPosition = returnDatas.SnakePositions[0];
             var applePosition = returnDatas.ApplePosition;
 
+            //for (int i = 0; i < returnDatas.SnakePositions.Count - 1; i++)
+            //{
+            //    var pointA = returnDatas.SnakePositions[i];
+            //    var pointB = returnDatas.SnakePositions[i+1];
+
+            //    if (HamiltonianCycleData.Data.PointSequence[pointA.X, pointA.Y] == 0 )
+            //    {
+            //        if (HamiltonianCycleData.Data.PointSequence[pointB.X, pointB.Y] != HamiltonianCycleData.Data.PointSequence.Length - 1)
+            //        {
+            //            return;
+            //        }
+
+            //    }
+            //    else if (HamiltonianCycleData.Data.PointSequence[pointA.X, pointA.Y] - 1 != HamiltonianCycleData.Data.PointSequence[pointB.X, pointB.Y])
+            //    {
+            //        return;
+            //    }
+            //}
+            // All parts of the snake are in the HamiltonianCycle.
+
+
             if (snakesHeadPosition.X < 1 || snakesHeadPosition.Y < 1 || snakesHeadPosition.Y == applePosition.Y)
             {
                 //             No need to calculate a shortcut because snakes head is already in
@@ -46,7 +67,7 @@ namespace Snake.Classes
                     // Snakes head is directly unter the apple.
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
-                else if (snakesHeadPosition.X < applePosition.X && HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Right)
+                else if (snakesHeadPosition.X < applePosition.X && HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Right)
                 {
                     // Snakes head is left from the apple
                     // AND
@@ -58,7 +79,7 @@ namespace Snake.Classes
                     // because the apple position can be a position with a movedirection that is equal to ".Up".
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
-                else if (snakesHeadPosition.X > applePosition.X && HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Left)
+                else if (snakesHeadPosition.X > applePosition.X && HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Left)
                 {
                     // Snakes head is left from the apple ... -> See previous comment.
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
@@ -70,7 +91,7 @@ namespace Snake.Classes
                 // The snake is completely below the apple.
                 // The snake should be leaded to column 0.
                 // if (!Common.IsValueEven(snakesHeadPosition.Y))
-                if( HamiltonianCycleData.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Right)
+                if( HamiltonianCycleData.Data.MoveDirections[snakesHeadPosition.X, applePosition.Y] == MoveDirection.Right)
                 {
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
