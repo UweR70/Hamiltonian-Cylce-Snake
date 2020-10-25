@@ -44,15 +44,15 @@ namespace Snake.Classes
                 var pointA = returnDatas.SnakePositions[i];
                 var pointB = returnDatas.SnakePositions[i + 1];
 
-                if (HamiltonianCycleData.Data.PointSequence[pointA.X, pointA.Y] == 0)
+                if (HamiltonianCycleData.Data.PointToSequenceNumber[pointA.X, pointA.Y] == 0)
                 {
-                    if (HamiltonianCycleData.Data.PointSequence[pointB.X, pointB.Y] != HamiltonianCycleData.Data.PointSequence.Length - 1)
+                    if (HamiltonianCycleData.Data.PointToSequenceNumber[pointB.X, pointB.Y] != HamiltonianCycleData.Data.PointToSequenceNumber.Length - 1)
                     {
                         return;
                     }
 
                 }
-                else if (HamiltonianCycleData.Data.PointSequence[pointA.X, pointA.Y] - 1 != HamiltonianCycleData.Data.PointSequence[pointB.X, pointB.Y])
+                else if (HamiltonianCycleData.Data.PointToSequenceNumber[pointA.X, pointA.Y] - 1 != HamiltonianCycleData.Data.PointToSequenceNumber[pointB.X, pointB.Y])
                 {
                     return;
                 }

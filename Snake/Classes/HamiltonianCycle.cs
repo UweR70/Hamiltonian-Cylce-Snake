@@ -30,9 +30,9 @@ namespace Snake.Classes
         public class Data
         {
             // Example: width = 6, height = 6 -> even / even -> is case 1: 
-            public MoveDirection[,] MoveDirections; // MoveDirections[2, 3] = .Right
-            public int[,] PointSequence;            //   PointSequece[2, 3] = 19            (20th Element becasue zero base counted)    
-            public Point[] Items;                   //            Point[19] = Point(2, 3)
+            public MoveDirection[,] MoveDirections; //        MoveDirections[2, 3] = .Right
+            public int[,] PointToSequenceNumber;    // PointToSequenceNumber[2, 3] = 19            (20th Element becasue zero base counted)    
+            public Point[] SequenceNumberToPoint;   // SequenceNumberToPoint[19]   = Point(2, 3)
         }
 
         public HamiltonianCycleData GetHamiltonianCycleData(int playFieldWidth, int playFieldHeight)
@@ -81,8 +81,8 @@ namespace Snake.Classes
         {
             var ret = new Data() {
                 MoveDirections = new MoveDirection[width, height],
-                PointSequence = new int[width, height],
-                Items = new Point[width * height]
+                PointToSequenceNumber = new int[width, height],
+                SequenceNumberToPoint = new Point[width * height]
             };
 
             // 1) Column 0
@@ -169,8 +169,8 @@ namespace Snake.Classes
             var ret = new Data()
             {
                 MoveDirections = new MoveDirection[width, height],
-                PointSequence = new int[width, height],
-                Items = new Point[width * height]
+                PointToSequenceNumber = new int[width, height],
+                SequenceNumberToPoint = new Point[width * height]
             };
 
             // 1) Column 0
@@ -224,7 +224,6 @@ namespace Snake.Classes
             var nTimes = (height - 2) / 2;
             for (int n = 0; n < nTimes; n++)
             {
-
                 for (int x = 1; x < width - 1; x += 2)
                 {
                     for (int y = 2; y < height - 1; y += 2)
@@ -247,8 +246,8 @@ namespace Snake.Classes
             var index = -1;
             var count = width * height;
             var currentPosition = new Point(0, 0);
-            hamiltonianCycle.PointSequence[0, 0] = ++index;
-            hamiltonianCycle.Items[0] = currentPosition;
+            hamiltonianCycle.PointToSequenceNumber[0, 0] = ++index;
+            hamiltonianCycle.SequenceNumberToPoint[0] = currentPosition;
             do
             {
                 switch (hamiltonianCycle.MoveDirections[currentPosition.X, currentPosition.Y])
@@ -268,8 +267,8 @@ namespace Snake.Classes
                         break;
                 }
                 index++;
-                hamiltonianCycle.PointSequence[currentPosition.X, currentPosition.Y] = index;
-                hamiltonianCycle.Items[index] = new Point(currentPosition.X, currentPosition.Y);
+                hamiltonianCycle.PointToSequenceNumber[currentPosition.X, currentPosition.Y] = index;
+                hamiltonianCycle.SequenceNumberToPoint[index] = new Point(currentPosition.X, currentPosition.Y);
             } while (index < count - 1);
 
             ShowHamiltonianCycle(width, height, hamiltonianCycle);
@@ -285,7 +284,7 @@ namespace Snake.Classes
                 var oneRow = $"row {hamHeight}: ";
                 for (int hamWidth = 0; hamWidth < width; hamWidth++)
                 {
-                    oneRow += $" | ({hamWidth}, {hamHeight}) = {hamiltonianCycle.PointSequence[hamWidth, hamHeight],-4}";
+                    oneRow += $" | ({hamWidth}, {hamHeight}) = {hamiltonianCycle.PointToSequenceNumber[hamWidth, hamHeight],-4}";
                 }
                 Console.WriteLine(oneRow + " |");
             }
@@ -326,7 +325,6 @@ namespace Snake.Classes
             foreach (var item in TestData)
             {
                 var hamiltonianCycle = GetHamiltonianCycleData(item.Width, item.Height);
-                // ShowHamiltonianCycle(item.Width, item.Height, hamiltonianCycle);
             }
         }
     }
