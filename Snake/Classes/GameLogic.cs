@@ -113,8 +113,6 @@ namespace Snake.Classes
             ReturnDatas.ResetThesePositions = new List<Point>();
 
 
-
-
             var nextMoveDirection = MoveDirection.Init;
             if (ReturnDatas.ShotCutMoveDirections == null || ReturnDatas.ShotCutMoveDirections.Count == 0)
             {
@@ -130,7 +128,7 @@ namespace Snake.Classes
                         throw new Exception("Unknown case!");
                 }
             }
-            // may be a shortcut path exists now.
+            // May be a shortcut path exists now.
 
             if (ReturnDatas.ShotCutMoveDirections.Count != 0)
             {

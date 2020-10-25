@@ -106,9 +106,8 @@ namespace Snake
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            // ToDo: Remove this after testing!
-            // new HamiltonianCycle().Test(); 
-            // return;
+            // ToDo: Uncomment the next line to call the test code.
+            // new HamiltonianCycle().Test(); return;
 
             if (IsAppRunning)
             {
@@ -140,7 +139,7 @@ namespace Snake
 
                 CoreLogic = new GameLogic(PlayFieldWidth, PlayFieldHeight);
 
-                // ToDo: The next four parameter should be a function of the playField width and height.
+                // ToDo: Reminder to redisign the app: The Form, TextBox, Panel control dimensions, but also the following (Square) variables should be a function of playfield dimensions.
                 SquareWidth = 20;
                 SquareHeight = 20;
                 SquareDeltaX = 2;
