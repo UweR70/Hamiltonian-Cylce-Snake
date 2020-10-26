@@ -97,14 +97,14 @@ Top level keywords how it works:
 
 <ul>
   <li>
-    The generated Hamiltonian Cycle is used in case a shortcut could or should not be calculated.
+    The generated Hamiltonian Cycle is used if an abbreviation cannot be calculated or an abbreviation should not be used.
   </li>
   <li>
-    A shortcut makes only sense when the snake can "re-enter" the generated Hamiltonian Cycle after the shortcut were worked out.
+    An abbreviation only makes sense if the snake can be returned to the generated Hamiltonian Cycle immediately after processing the abbreviation.
   </li>
   <li>
-    Generate a shortcut path only in case all snake parts (head, body, tail) are currently in the correct order given by the generated Hamiltonian Cycle.<br/>
-    (The real, interlectual work is in this sentence and the reason why I wrote above "... or should not be calculated".)
+    Generate a abbreviation path only in case all snake parts (head, body, tail) are currently in the correct order given by the generated Hamiltonian Cycle.<br/>
+    (The real, interlectual work is in this sentence and the reason why I wrote above "... or an abbreviation should not be used".)
   </li>
 </ul>
 <br/>
