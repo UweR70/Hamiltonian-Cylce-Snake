@@ -90,3 +90,13 @@ Combining (A) and (B) results in these facts:<br/>
   </li>
 </ul>
 
+The easy part was to develop a functionality that returns a Hamilton cycle and make a snake follow the circle while eating apples.
+In comparison, it was more difficult to develop a shortcut functionality.
+
+Keywords how it works:
+
+<ul>
+  <li>
+    ccc
+  <li>
+</ul>
