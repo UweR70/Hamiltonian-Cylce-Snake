@@ -89,7 +89,6 @@ Combining (A) and (B) results in these facts:<br/>
     <br/>
   </li>
 </ul>
-
 The easy part was to develop a functionality that returns a Hamilton cycle and make a snake follow the circle while eating apples.<br/>
 In comparison, it was more difficult to develop a shortcut functionality.<br/>
 <br/>
@@ -113,6 +112,6 @@ Finally contains its only some if / else statements.<br/>
 The most time consuming part is the above meant "query logic" which tests whether all snake parts are in the correct Hamiltonian Cycle order.<br/>
 <br/>
 To make not only this test as quick as possible, I introduced some classes which are providing everything needed.<br/>
-Like to avoid drawing a playfield square/cell with a color that the cell already has.Etc.<br/>
+I have also thought about further optimizations, such as avoid drawing a playfield square/cell with a color that the cell already has.Etc.<br/>
 <br/>
 Take a deep dive in my code and you will find much more topics I was thinking about. 
