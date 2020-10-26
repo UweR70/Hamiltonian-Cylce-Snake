@@ -90,10 +90,10 @@ Combining (A) and (B) results in these facts:<br/>
   </li>
 </ul>
 
-The easy part was to develop a functionality that returns a Hamilton cycle and make a snake follow the circle while eating apples.
-In comparison, it was more difficult to develop a shortcut functionality.
-
-Top level keywords how it works:
+The easy part was to develop a functionality that returns a Hamilton cycle and make a snake follow the circle while eating apples.<br/>
+In comparison, it was more difficult to develop a shortcut functionality.<br/>
+<br/>
+Top level keywords how it works:<br/>
 
 <ul>
   <li>
