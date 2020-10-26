@@ -75,7 +75,7 @@ Combining (A) and (B) results in these facts:<br/>
     2 (x is even and y is odd)<br/>
     can be represented with another Hamiltonian Cycle pattern.<br/>
     <br/>
-    <img src="https://live.staticflickr.com/65535/50516580233_28a97487ac_w.jpg" style="width: 100px; height: 100px;"><br/>
+    <img src="https://live.staticflickr.com/65535/50533997831_fb870bd208_w.jpg" style="width: 100px; height: 100px;"><br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Notice: Some (not all) repeating pattern are highlighted by adding bold borders.<br/>
     <br/>
   </li>
