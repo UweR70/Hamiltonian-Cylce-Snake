@@ -93,10 +93,19 @@ Combining (A) and (B) results in these facts:<br/>
 The easy part was to develop a functionality that returns a Hamilton cycle and make a snake follow the circle while eating apples.
 In comparison, it was more difficult to develop a shortcut functionality.
 
-Keywords how it works:
+Top level keywords how it works:
 
 <ul>
   <li>
-    ccc
+    The generated Hamiltonian Cycle is used in case a shortcut could or should not be calculated.
+  </li>
   <li>
+    A shortcut makes only sense when the snake can "re-enter" the generated Hamiltonian Cycle after the shortcut were worked out.
+  </li>
+  <li>
+    Generate a shortcut path only in case all snake parts (head, body, tail) are currently in the correct order given by the generated Hamiltonian Cycle.<br/>
+    (The real, interlectual work is in this sentence and the reason why I wrote above "... or should not be calculated".)
+  </li>
 </ul>
+
+
