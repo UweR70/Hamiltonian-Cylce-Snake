@@ -112,11 +112,7 @@ Surprisingly is the resulting "ShortCut" class very compact, reliable and fast.<
 Finally contains its only some if / else statements.<br/>
 The most time consuming part is the above meant "query logic" which tests whether all snake parts are in the correct Hamiltonian Cycle order.<br/>
 <br/>
-To make this test most powerfull/fast I introduced some classes which are providing everything needed.<br/>
+To make not only this test as quick as possible, I introduced some classes which are providing everything needed.<br/>
+Like to avoid drawing a playfield square/cell with a color that the cell already has.Etc.<br/>
 <br/>
-Furthermore I took care to optimize the code to be as fast as possible.<br/>
-Like avoiding drawing a playfield square/field with a color that the cell has already. Etc.<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+Take a deep dive in my code and you will find much more topics I was thinking about. 
