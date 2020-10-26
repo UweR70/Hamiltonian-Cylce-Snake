@@ -114,4 +114,14 @@ The most time consuming part is the above meant "query logic" which tests whethe
 To make not only this test as quick as possible, I introduced some classes which are providing everything needed.<br/>
 I have also thought about further optimizations, such as avoid drawing a playfield square/cell with a color that the cell already has.Etc.<br/>
 <br/>
-Take a deep dive in my code and you will find much more topics I was thinking about. 
+Take a deep dive in my code and you will find much more topics I was thinking about.<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<img src="https://live.staticflickr.com/65535/50535002607_19232a7f3c_w.jpg" style="width: 100px; height: 100px;"><br/>
+<br/>
+<br/>
+<br/>
