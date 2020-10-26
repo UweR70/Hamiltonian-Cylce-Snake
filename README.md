@@ -107,17 +107,16 @@ Top level keywords how it works:
     (The real, interlectual work is in this sentence and the reason why I wrote above "... or should not be calculated".)
   </li>
 </ul>
-Surprisingly is the resulting "ShortCut.cs" class very compact, reliable and fast.
-Finally contains its only some if / else statements.
-The most time consuming part is the above meant "query logic" which tests whether all snake parts are in the correct Hamiltonian Cycle order.
-
-To make this test most powerfull/fast I introduced some (nice) classes - which are providing everything needed.
-
-Furhtermore I took care to optoimize the code to be as fast as possible.
-Example: 
-Due to the high speed of movement, it was not possible to see where the snakehead was.
-So I gave the head anather color (blue) than the body (green) and the tail (yellow)
-
-
-
-
+<br/>
+Surprisingly is the resulting "ShortCut" class very compact, reliable and fast.<br/>
+Finally contains its only some if / else statements.<br/>
+The most time consuming part is the above meant "query logic" which tests whether all snake parts are in the correct Hamiltonian Cycle order.<br/>
+<br/>
+To make this test most powerfull/fast I introduced some classes which are providing everything needed.<br/>
+<br/>
+Furthermore I took care to optimize the code to be as fast as possible.<br/>
+Like avoiding drawing a playfield square/field with a color that the cell has already. Etc.<br/>
+<br/>
+<br/>
+<br/>
+<br/>
