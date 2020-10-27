@@ -153,7 +153,7 @@ An abbreviation only makes sense if the snake can be returned to the<br/>
 generated Hamiltonian Cycle immediately after processing the abbreviation.<br/>
 </code></pre> 
 On the other hand, the path covered by the snake should be as short as possible.<br/>
-Ok, so lets try to spare these two steps menat above!<br/>
+Ok, so lets try to spare these two steps meant above!<br/>
 For the above shown situations its looks good but what in situations like shown in the following image?<br/>
 <br/>
 <img src="https://live.staticflickr.com/65535/50537260752_16e6194f0b_z.jpg""><br/>
