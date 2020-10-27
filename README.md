@@ -166,25 +166,40 @@ the next abbreviation path until snake parts (head, body, tail) are in the corre
 <br/>
 <br/>
 <br/>
-This leads us to the colculation that the spared steps are equal to <br/>
-maximum half of the cells/steps of the row which includes the apple<br/>
-plus the same amount of steps for the row "above" this apple containing rowe.<br/>
-(Yes, other separations are possible.)<br/>
-But finally we are talking abount an amont of spared steps equal to the playfield width.<br/>
-Lets call the amount of these spared steps "Amount A" steps.<br/>
+This leads us to the calculation that the maximun number of spared steps are equal to<br/>
+a) the number of columns<br/>
+minus one for the first colum<br/>
+minus one for the cell that contains the apple<br/>
+<br/>                                             
+plus<br/>
 <br/>
-On the other hand, doing it as discussesd means that we have to wait with the next abbreviation path calculation <br/>
-until all snake part "in-line". <br/>
-In case snakes length is less than "Amount A" we spare steps.<br/>
-In case snakes length is equal or grater than "Amount A" we loose the ability to calculate immediately the next abrreviation,<br/>
-what can leed to more steps the "Amount A" step.<br/>
+b) the number of columns<br/>
+minus one for the first colum<br/>
+minus one for the cell that contains the snake head.<br/>
 <br/>
-Due the fact that we will have more situations where the snakes length is greater than the playfield width it is legitimate to assume<br/>
-that we need less steps when we stick<br/>
-with the starting situation. Means <br/>
+Finally we are talking about an amount of spared steps equal to:<br/>
+Two times the playfield width minus four.<br/>
+(Please notice that this is a approximation - but I believe a very accurate one.)<br/>
+<br/>
+Lets call the amount of these spared steps "Amount Spared Steps" steps.<br/>
+<br/>
+On the other hand, doing it as discussed means that we have to wait with the next abbreviation path calculation<br/>
+until all snake part "in-line".<br/>
+In case snakes length is<br/>
+- less than "Amount Spared Steps"<br/>
+we spare steps.<br/>
+- equal or grater than "Amount Spared Steps"<br/>
+we loose the ability to calculate immediately the next abrreviation,<br/>
+what can leed to more steps then we spare steps as mentioned in "Amount Spared Steps".<br/>
+<br/>
+Due the fact that we will have more situations where the snakes length is greater than<br/> 
+two times the playfield width (minus four)<br/> 
+it is legitimate to assume that we need less steps when we stick with the starting situation:<br/>
+<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">                                                                                
 <br/>
 <br/>
 <br/>
+Believe me this was just one excurse in one scenario.
 <br/>
 <br/>
 <br/>
