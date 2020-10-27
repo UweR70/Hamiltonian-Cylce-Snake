@@ -116,22 +116,12 @@ I have also thought about further optimizations, such as avoid drawing a playfie
 <br/>
 Take a deep dive in my code and you will find much more topics I was thinking about.<br/>
 <br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-# Deep thoughts:<br/>
+
+# Deep thoughts
 Just to give you an impression how deep my thoughts were:<br/>
 <br/>
 Please notice that the following example represents a case 1 playfield where x and y are even; which also handles case 3, see above.<br/>
 <br/>
-
-
-
-
-
-
 The following image is just one example to give you the idea.<br/>
 <br/>
 Yes, at the first glance it is a little bit confusing.<br/>
@@ -156,12 +146,11 @@ In this example ends the path in the row that contains the apple because the "no
 <br/>
 But wait! Doing it this way means that the snake is going to following the Hamiltonian Cycle after it eat the apple.<br/>
 Means it will also walk first through cell {1; 2} and then through cell {1; 1}.<br/>
-Why not spare thesw movements and generate for example this abbreviation path?<br/>
-
+Why not spare these movements and generate for example this abbreviation path?<br/>
 <img src="https://live.staticflickr.com/65535/50536331956_1a2dac30c4_n.jpg" style="width: 100px; height: 100px;">
 <br/>
 <br/>
-<br/><br/>
+<br/>
 
 <img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;">
 
