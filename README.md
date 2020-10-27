@@ -147,11 +147,11 @@ Means it will also walk first through cell {1; 2} and then through cell {1; 1}.<
 Why not spare these movements and generate for example this abbreviation path?<br/>
 <img src="https://live.staticflickr.com/65535/50536331956_1a2dac30c4_n.jpg" style="width: 100px; height: 100px;">
 <br/>
-On the one hand, this violates the rule mentioned above: <br/>
-xxxxxxxxxxx<br/>
- An abbreviation only makes sense if the snake can be returned to the generated Hamiltonian Cycle immediately after processing the abbreviation.<br/>
- x<br/>
-on the other hand, the path covered by the snail should be as short as possible.<br/>
+On the one hand, this violates the rule mentioned above:
+<pre><code>
+An abbreviation only makes sense if the snake can be returned to the generated Hamiltonian Cycle immediately after processing the abbreviation.
+</code><pre> 
+On the other hand, the path covered by the snail should be as short as possible.<br/>
 
 
 Looks good for the above situation but what in situations like shown in the following image?<br/>
