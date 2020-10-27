@@ -2,7 +2,7 @@
 
 # Story
 This is all about the game Snake (https://en.wikipedia.org/wiki/Snake_(video_game_genre)),<br/>
-Hamilitonian Cycles (https://en.wikipedia.org/wiki/Hamiltonian_path), and this YouTube(r) video<br/>
+Hamilitonian Cycles (https://en.wikipedia.org/wiki/Hamiltonian_path), and this YouTube<sup>®</sup> video<br/>
 <br/>
 I Created a PERFECT SNAKE A.I.<br/>
 https://www.youtube.com/watch?v=tjQIO1rqTBE<br/>
