@@ -138,7 +138,7 @@ Take your time and you will see ...<br/>
      ... the brown cells that are showing the generated abbreviation path.
   </li>
 </ul>
-<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;"><br/>
+<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">
 (Please notice that this example represents case 1 playfield where x and y are even.)<br/>
 <br/>
 In this example ends the path in the row that contains the apple because the "normal" Hamiltonian Cycle will lead the snake directly to the apple.<br/>
