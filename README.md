@@ -157,7 +157,8 @@ On the other hand, the path covered by the snake should be as short as possible.
 Ok, so lets try to spare these two steps menat above!<br/>
 <br/>
 For the above shown situations its looks good but what in situations like shown in the following image?<br/>
-<img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;"><br/>
+<br/>
+<img src="https://live.staticflickr.com/65535/50536149583_37ee0c5b9d_c.jpg" style="width: 100px; height: 100px;"><br/>
 Means finally that we have to take care about<br/>
 the short cut steps needed to reach the apple<br/>
 and<br/>
