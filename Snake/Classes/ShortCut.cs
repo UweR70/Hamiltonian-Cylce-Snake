@@ -120,7 +120,7 @@ namespace Snake.Classes
             var snakesHeadPosition = returnDatas.SnakePositions[0];
             var applePosition = returnDatas.ApplePosition;
 
-            throw new Exception("Implement it!"); // ToDo: Impelent it!
+            // throw new Exception("Implement it!"); // ToDo: Impelent it!
         }
     }
 }

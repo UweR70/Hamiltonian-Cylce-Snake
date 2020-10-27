@@ -168,18 +168,18 @@ namespace Snake
                     "Used colors:\r\n" +
                     "\tdark khaki = Hamiltonian Cyvle\r\n" +
                     "\r\n" +
-                    "\tblack = PlayField\r\n" +
+                    "\tblack = Playfield\r\n" +
                     "\tred = Apple\r\n" +
                     "\tblue = Snake head\r\n" +
                     "\tgreen = Snake body\r\n" +
                     "\tyellow = Snake tail\r\n" +
                     "\r\n" +
-                    "Possible playField dimensions:\r\n" +
+                    "Possible playfield dimensions:\r\n" +
                     "\tMin. value is 2x2,\r\n" +
                     "\tmax. value is 40x40\r\n" +
                     "\t(40x40 for display reasons only)\r\n" +
                     "\r\n" +
-                    "Current playField dimensions:\r\n" +
+                    "Current playfield dimensions:\r\n" +
                     $"\tWidth: {PlayFieldWidth},\r\n" +
                     $"\tHeight: {PlayFieldHeight}\r\n" +
                     "\r\n";                   
@@ -215,7 +215,7 @@ namespace Snake
                             currentPosition.X++;
                             break;
                     }
-                    Thread.Sleep(15);
+                    Thread.Sleep(5);
                 } while (!(currentPosition.X == 0 && currentPosition.Y == 0) && !IsUserInterrupted);
             }).ContinueWith(result =>
             {
@@ -263,7 +263,7 @@ namespace Snake
                     {
                         DrawOneRectangle(coreLogicReturns.ApplePosition, PenApple);
                     }
-                    Thread.Sleep(10);
+                    Thread.Sleep(1);
                 } while (!coreLogicReturns.IslogicalEndReached && IsAppRunning && !IsUserInterrupted);
             }).ContinueWith(result =>
             {
