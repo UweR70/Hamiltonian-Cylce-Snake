@@ -83,14 +83,13 @@ Combining (A) and (B) results in these facts:<br/>
     The case<br/>
     4 (x is odd and y is odd)<br/>
     can not be represented with a Hamiltonian Cycle pattern.<br/>
-    (See below for a possible solution by violating the Hamiltonia Cycle rule)<br/>
     <br/>
     <img src="https://live.staticflickr.com/65535/50517537862_ff6ba5b660_n.jpg" style="width: 100px; height: 100px;"><br/>
     <br/>
   </li>
 </ul>
 The easy part was to develop a functionality that returns a Hamilton cycle and make a snake follow the circle while eating apples.<br/>
-In comparison, it was more difficult to develop a shortcut functionality.<br/>
+In comparison, it was more difficult to develop a abbreviation functionality.<br/>
 <br/>
 Top level keywords how it works:<br/>
 
