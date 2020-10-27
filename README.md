@@ -120,6 +120,13 @@ Take a deep dive in my code and you will find much more topics I was thinking ab
 <br/>
 <br/>
 <br/>
+The following image is just one example to give you the idea.
+Yes, at a first glance it is a little bit confusing.
+Take your time and you will see that all snake parts are in the correct Hamiltonian Cycle order.<br/>
+The brown cells are showing the generated abbreviation path.
+In this example ends the path in the row that contains the apple. because the "normal" Hamiltonian path will lead the snake directly to the apple.
+(Note taht this example represents case 1 playfield where x and y are even).
+
 <br/>
 <img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;"><br/>
 <br/>
