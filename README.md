@@ -51,7 +51,7 @@ There are four cases:<br/>
 <br/>
 
 (B)<br/>
-A Hamiltonian Cylce is a cacle that hits all cells exact once.<br/>
+A Hamiltonian Cylce is a cycle that hits all cells exact once.<br/>
 The path starts and ends in the same cell.<br/>
 <br/>
 From these simple rules it follows that the smallest playing field is one with the dimension 2-by-2.<br/>
