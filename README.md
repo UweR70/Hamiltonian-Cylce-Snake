@@ -123,7 +123,7 @@ Please notice that the following examples are representing a case 1 playfield wh
 <br/>
 The following image is just one example to give you the basic idea.<br/>
 <br/>
-Yes, at the first glance it is a little bit confusing but stick with me take your time and you will see ...<br/> 
+Yes, at the first glance it is a little bit confusing but stick with me, take your time, and you will see ...<br/> 
 <ul>
   <li>
     ... the snakehead (blue), snakebody (green) and snaketail (yellow).
@@ -138,7 +138,7 @@ Yes, at the first glance it is a little bit confusing but stick with me take you
      ... the brown cells that are showing the generated abbreviation path.
   </li>
 </ul>
-<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;"><br/>
+<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">
 The abbreviation path ends in this example in the row that contains the apple<br/> 
 because the "normal" Hamiltonian Cycle will lead the snake directly to the apple.<br/>
 <br/>
@@ -148,19 +148,19 @@ Why not spare these movements and generate for example this abbreviation path?<b
 <img src="https://live.staticflickr.com/65535/50536331956_1a2dac30c4_n.jpg" style="width: 100px; height: 100px;">
 On the one hand, this violates the rule mentioned above:
 <pre><code>
-An abbreviation only makes sense if the snake can be returned to the generated Hamiltonian Cycle immediately after processing the abbreviation.
+An abbreviation only makes sense if the snake can be returned to the<br/>
+generated Hamiltonian Cycle immediately after processing the abbreviation.<br/>
 </code></pre> 
-On the other hand, the path covered by the snail should be as short as possible.<br/>
+On the other hand, the path covered by the snake should be as short as possible.<br/>
 
 
 Looks good for the above situation but what in situations like shown in the following image?<br/>
 <img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;">
-Means finally that we have to take care about 
-the short cut steps needed to reach the apple
-and 
-the normal Hamiltonia Cycle steps distance between the apple and the snake tail.
-And, of course we have to think about that the snake length is going to increase by one when the apple was eaten.
-
-
+Means finally that we have to take care about<br/>
+the short cut steps needed to reach the apple<br/>
+and<br/>
+the normal Hamiltonia Cycle steps distance between the apple and the snake tail.<br/>
+And, of course we have to think about that the snake length is going to increase by one when the apple was eaten.<br/>
+<br/>
 <br/>
 <br/>
