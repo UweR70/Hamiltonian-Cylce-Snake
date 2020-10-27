@@ -119,12 +119,11 @@ Take a deep dive in my code and you will find much more topics I was thinking ab
 
 # Deep thoughts
 Just to give you an impression how deep my thoughts were.<br/>
-Please notice that the following example represents a case 1 playfield where x and y are even; which also handles case 3, see above.<br/>
+Please notice that the following examples are representing a case 1 playfield where x and y are even; which also handles case 3, see above.<br/>
 <br/>
-The following image is just one example to give you the idea.<br/>
+The following image is just one example to give you the basic idea.<br/>
 <br/>
-Yes, at the first glance it is a little bit confusing.<br/>
-Take your time and you will see ...<br/> 
+Yes, at the first glance it is a little bit confusing but stick with me take your time and you will see ...<br/> 
 <ul>
   <li>
     ... the snakehead (blue), snakebody (green) and snaketail (yellow).
@@ -140,13 +139,21 @@ Take your time and you will see ...<br/>
   </li>
 </ul>
 <img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;"><br/>
-In this example ends the path in the row that contains the apple because the "normal" Hamiltonian Cycle will lead the snake directly to the apple.<br/>
+The abbreviation path ends in this example in the row that contains the apple<br/> 
+because the "normal" Hamiltonian Cycle will lead the snake directly to the apple.<br/>
 <br/>
 But wait! Doing it this way means that the snake is going to following the Hamiltonian Cycle after it eat the apple.<br/>
 Means it will also walk first through cell {1; 2} and then through cell {1; 1}.<br/>
 Why not spare these movements and generate for example this abbreviation path?<br/>
 <img src="https://live.staticflickr.com/65535/50536331956_1a2dac30c4_n.jpg" style="width: 100px; height: 100px;">
 <br/>
+On the one hand, this violates the rule mentioned above: <br/>
+xxxxxxxxxxx<br/>
+ An abbreviation only makes sense if the snake can be returned to the generated Hamiltonian Cycle immediately after processing the abbreviation.<br/>
+ x<br/>
+on the other hand, the path covered by the snail should be as short as possible.<br/>
+
+
 Looks good for the above situation but what in situations like shown in the following image?<br/>
 <img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;">
 Means finally that we have to take care about 
