@@ -163,17 +163,28 @@ Like: Is it possible to go one line up? (To stay in this example.)<br/>
 <br/>
 But we have also to consider about the fact that going one line up would means that we could not generate<br/>
 the next abbreviation path until snake parts (head, body, tail) are in the correct order given by the generated Hamiltonian Cycle.<br/>
-
-
-
-
-
-
-
-how many steps the generated abbreviation contains (to reach the apple and to go one cell above<br/>
-and<br/>
-is the normal Hamiltonia Cycle steps distance between the apple and the snake tail.<br/>
-And, of course we have to think about that the snake length is going to increase by one when the apple was eaten.<br/>
+<br/>
+<br/>
+<br/>
+This leads us to the colculation that the spared steps are equal to <br/>
+maximum half of the cells/steps of the row which includes the apple<br/>
+plus the same amount of steps for the row "above" this apple containing rowe.<br/>
+(Yes, other separations are possible.)<br/>
+But finally we are talking abount an amont of spared steps equal to the playfield width.<br/>
+Lets call the amount of these spared steps "Amount A" steps.<br/>
+<br/>
+On the other hand, doing it as discussesd means that we have to wait with the next abbreviation path calculation <br/>
+until all snake part "in-line". <br/>
+In case snakes length is less than "Amount A" we spare steps.<br/>
+In case snakes length is equal or grater than "Amount A" we loose the ability to calculate immediately the next abrreviation,<br/>
+what can leed to more steps the "Amount A" step.<br/>
+<br/>
+Due the fact that we will have more situations where the snakes length is greater than the playfield width it is legitimate to assume<br/>
+that we need less steps when we stick<br/>
+with the starting situation. Means <br/>
+<br/>
+<br/>
+<br/>
 <br/>
 <br/>
 <br/>
