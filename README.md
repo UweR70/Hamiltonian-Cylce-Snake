@@ -139,18 +139,16 @@ Take your time and you will see ...<br/>
      ... the brown cells that are showing the generated abbreviation path.
   </li>
 </ul>
-<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">
+<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;"><br/>
 In this example ends the path in the row that contains the apple because the "normal" Hamiltonian Cycle will lead the snake directly to the apple.<br/>
 <br/>
 But wait! Doing it this way means that the snake is going to following the Hamiltonian Cycle after it eat the apple.<br/>
 Means it will also walk first through cell {1; 2} and then through cell {1; 1}.<br/>
 Why not spare these movements and generate for example this abbreviation path?<br/>
-<img src="https://live.staticflickr.com/65535/50536331956_1a2dac30c4_n.jpg" style="width: 100px; height: 100px;">
+<img src="https://live.staticflickr.com/65535/50536331956_1a2dac30c4_n.jpg" style="width: 100px; height: 100px;"><br/>
 <br/>
-<br/>
-<br/>
-
-<img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;">
+Looks good for the above situation but what in situations like shown in the following image?<br/>
+<img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;"><br/>
 
 
 
