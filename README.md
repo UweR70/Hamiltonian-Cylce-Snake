@@ -176,6 +176,7 @@ This leads us to the calculation that the maximun number of spared steps are equ
   </li>
 </ul>
 plus<br/>
+<br/>
 <ul>
   <li>
     the number of columns<br/>
@@ -188,25 +189,31 @@ Finally we are talking about an amount of spared steps equal to:<br/>
 Two times the playfield width minus four.<br/>
 (Please notice that this is a approximation - but I believe a very accurate one.)<br/>
 <br/>
-Lets call the amount of these spared steps "Amount Spared Steps" steps.<br/>
+Lets call the amount of these spared steps "Amount Spared Steps"<br/>
 <br/>
-On the other hand, doing it as discussed means that we have to wait with the next abbreviation path calculation<br/>
-until all snake part "in-line".<br/>
+On the other hand, doing it as discussed means that we have to wait with<br/>
+the next abbreviation path calculation until all snake parts are "in-line".<br/>
+<br/>
 In case snakes length is<br/>
-- less than "Amount Spared Steps"<br/>
-we spare steps.<br/>
-- equal or grater than "Amount Spared Steps"<br/>
-we loose the ability to calculate immediately the next abrreviation,<br/>
-what can leed to more steps then we spare steps as mentioned in "Amount Spared Steps".<br/>
-<br/>
-Due the fact that we will have more situations where the snakes length is greater than<br/> 
-two times the playfield width (minus four)<br/> 
+<ul>
+  <li>
+    less than "Amount Spared Steps"<br/>
+    we spare steps.
+  </li>
+  <li>
+    equal or grater than "Amount Spared Steps"<br/>
+    we loose the ability to calculate immediately the next abrreviation,<br/>
+    what can leed to more steps then we spare steps as mentioned in "Amount Spared Steps".
+  </li>
+</ul>
+Due the fact that we will have more situations where the snakes length<br/>
+is greater than two times the playfield width (minus four)<br/> 
 it is legitimate to assume that we need less steps when we stick with the starting situation:<br/>
 <img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">                                                                                
 <br/>
 <br/>
 <br/>
-Believe me this was just one excurse in one scenario.
+Believe me this was just one excurse in one scenario.<br/>
 <br/>
-<br/>
-<br/>
+Last, but not least:<br/>
+Enjoy the code!<br/>
