@@ -117,9 +117,21 @@ I have also thought about further optimizations, such as avoid drawing a playfie
 Take a deep dive in my code and you will find much more topics I was thinking about.<br/>
 <br/>
 <br/>
-# Deep thoughts:
-Just to give you an impression how deep my thozghts were:<br/>
 <br/>
+<br/>
+<br/>
+<br/>
+# Deep thoughts:<br/>
+Just to give you an impression how deep my thoughts were:<br/>
+<br/>
+Please notice that the following example represents a case 1 playfield where x and y are even; which also handles case 3, see above.<br/>
+<br/>
+
+
+
+
+
+
 The following image is just one example to give you the idea.<br/>
 <br/>
 Yes, at the first glance it is a little bit confusing.<br/>
@@ -139,7 +151,7 @@ Take your time and you will see ...<br/>
   </li>
 </ul>
 <img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">
-(Please notice that this example represents a case 1 playfield where x and y are even.)<br/>
+<br/>
 <br/>
 In this example ends the path in the row that contains the apple because the "normal" Hamiltonian Cycle will lead the snake directly to the apple.<br/>
 <br/>
@@ -152,7 +164,7 @@ Why not spare thess movements and generate for example this abbreviation path?<b
 <br/>
 <br/><br/>
 
-<img src="" style="width: 100px; height: 100px;">
+<img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;">
 
 
 
