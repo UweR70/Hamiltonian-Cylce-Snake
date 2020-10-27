@@ -230,8 +230,7 @@ Believe me, this was just one excursion into one of many scenarios.<br/>
     Nothing to develop because for this case is no Hamiltonian Cycle possible.
   </li>
 </ul>
-<br/>
-<h4>For sure there are much more optimizations (also in the abbreviation functionality) possible!</h4><br/>
+<h3>For sure there are much more optimizations (also in the abbreviation functionality) possible!</h3><br/>
 Good luck!<br/>
  
 # Last, but not least:<br/>
