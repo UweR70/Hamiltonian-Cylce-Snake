@@ -167,7 +167,6 @@ But we also have to take into account that going up one line would mean that we 
 the next abbreviation path when all snake parts (head, body, tail) are in the order specified by the<br/>
 generated Hamilton Cycle.<br/>
 <br/>
-<br/>
 This leads us to the calculation that the maximum number of spared steps are equal to<br/>
 <ul>
   <li>
@@ -213,8 +212,24 @@ it is legitimate to assume that we need less steps when we stick with the starti
 <img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">                                                                                
 <br/>
 <br/>
-<br/>
 Believe me, this was just one excursion into one of many scenarios.<br/>
 <br/>
-Last, but not least:<br/>
+
+# Remarks
+<ul>
+  <li>
+    case 1 and 3:<br/>
+    Fully developed. Uses Hamiltonian Cycle and abbreviation functionality.
+  </li>
+  <li>
+    case 3:<br/>
+    Partially developed. Uses Hamiltonian Cycle only. May I add later also for the case a abbreviation functionality.
+  </li>
+  <li>
+    case 4:<br/>
+    Nothing to develop because for this case is no Hamiltonian Cycle possible.
+  </li>
+ </ul>
+ 
+# Last, but not least:<br/>
 Enjoy the code!<br/>
