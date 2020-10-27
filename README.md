@@ -139,9 +139,9 @@ Take your time and you will see ...<br/>
   </li>
 </ul>
 <img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;"><br/>
+(Please notice that this example represents case 1 playfield where x and y are even.)<br/>
 <br/>
 In this example ends the path in the row that contains the apple because the "normal" Hamiltonian Cycle will lead the snake directly to the apple.<br/>
-(Please notice that this example represents case 1 playfield where x and y are even.)<br/>
 <br/>
 But wait! Doing it this way means that the snake is going to following the Hamiltonian Cycle after it eat the apple.
 Means it will also walk first through cell {1; 2} and then through cell {1; 1}.
