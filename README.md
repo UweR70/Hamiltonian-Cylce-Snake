@@ -112,7 +112,7 @@ Finally contains its only some if / else statements.<br/>
 The most time consuming part is the above meant "query logic" which tests whether all snake parts are in the correct Hamiltonian Cycle order.<br/>
 <br/>
 To make not only this test as quick as possible, I introduced some classes which are providing everything needed.<br/>
-I have also thought about further optimizations, such as avoid drawing a playfield square/cell with a color that the cell already has.Etc.<br/>
+I have also thought about further optimizations, such as avoid drawing a playfield square/cell with a color that the cell already has. Etc.<br/>
 <br/>
 Take a deep dive in my code and you will find much more topics I was thinking about.<br/>
 <br/>
@@ -121,9 +121,8 @@ Take a deep dive in my code and you will find much more topics I was thinking ab
 <br/>
 <br/>
 The following image is just one example to give you the idea.<br/>
-(Please notice that this example represents case 1 playfield where x and y are even).<br/>
 <br/>
-Yes, at a first glance it is a little bit confusing.<br/>
+Yes, at the first glance it is a little bit confusing.<br/>
 Take your time and you will see ...<br/> 
 <ul>
   <li>
@@ -133,14 +132,14 @@ Take your time and you will see ...<br/>
     ... that all snake parts are in the correct Hamiltonian Cycle order.
   </li>
   <li>
-    ... the brown cells that are showing the generated abbreviation path.
+    ... the here important part of the "normal" Hamiltonian Cycle.
   </li>
   <li>
-     ... the here important part of the "normal" Hamiltonian Cycle.
+     ... the brown cells that are showing the generated abbreviation path.
   </li>
 </ul>
 In this example ends the path in the row that contains the apple because the "normal" Hamiltonian Cycle will lead the snake directly to the apple.<br/>
-
+Please notice that this example represents case 1 playfield where x and y are even.<br/>
 
 <br/>
 <img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;"><br/>
