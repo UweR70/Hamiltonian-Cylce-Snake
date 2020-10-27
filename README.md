@@ -153,17 +153,26 @@ An abbreviation only makes sense if the snake can be returned to the<br/>
 generated Hamiltonian Cycle immediately after processing the abbreviation.<br/>
 </code></pre> 
 On the other hand, the path covered by the snake should be as short as possible.<br/>
-<br/>
 Ok, so lets try to spare these two steps menat above!<br/>
-<br/>
 For the above shown situations its looks good but what in situations like shown in the following image?<br/>
 <br/>
-<img src="https://live.staticflickr.com/65535/50537260752_16e6194f0b_z.jpg" style="width: 100px; height: 100px;"><br/>
-<img src="https://live.staticflickr.com/65535/50536384398_2fce8a3915_z.jpg" style="width: 100px; height: 100px;"><br/>
-Means finally that we have to take care about<br/>
-the short cut steps needed to reach the apple<br/>
+<img src="https://live.staticflickr.com/65535/50537260752_16e6194f0b_z.jpg""><br/>
+<img src="https://live.staticflickr.com/65535/50536384398_2fce8a3915_z.jpg"><br/>
+Means we have also to consider about the situation when the snake eat the apple.<br/>
+Like: Is it possible to go one line up? (To stay in this example.)<br/>
+<br/>
+But we have also to consider about the fact that going one line up would means that we could not generate<br/>
+the next abbreviation path until snake parts (head, body, tail) are in the correct order given by the generated Hamiltonian Cycle.<br/>
+
+
+
+
+
+
+
+how many steps the generated abbreviation contains (to reach the apple and to go one cell above<br/>
 and<br/>
-the normal Hamiltonia Cycle steps distance between the apple and the snake tail.<br/>
+is the normal Hamiltonia Cycle steps distance between the apple and the snake tail.<br/>
 And, of course we have to think about that the snake length is going to increase by one when the apple was eaten.<br/>
 <br/>
 <br/>
