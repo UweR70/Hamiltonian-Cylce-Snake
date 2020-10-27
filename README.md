@@ -223,7 +223,7 @@ Believe me, this was just one excursion into one of many scenarios.<br/>
   </li>
   <li>
     case 3:<br/>
-    Partially developed. Uses Hamiltonian Cycle only. May I add later also for the case a abbreviation functionality.
+    Partially developed. Uses Hamiltonian Cycle only. Maybe I'll add an abbreviation functionality later in this case too.
   </li>
   <li>
     case 4:<br/>
