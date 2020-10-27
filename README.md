@@ -145,6 +145,7 @@ because the "normal" Hamiltonian Cycle will lead the snake directly to the apple
 But wait! Doing it this way means that the snake is going to following the Hamiltonian Cycle after it eat the apple.<br/>
 Means it will also walk first through cell {1; 2} and then through cell {1; 1}.<br/>
 Why not spare these movements and generate for example this abbreviation path?<br/>
+<br/>
 <img src="https://live.staticflickr.com/65535/50536331956_1a2dac30c4_n.jpg" style="width: 100px; height: 100px;">
 On the one hand, this violates the rule mentioned above:
 <pre><code>
@@ -155,7 +156,7 @@ On the other hand, the path covered by the snake should be as short as possible.
 
 
 Looks good for the above situation but what in situations like shown in the following image?<br/>
-<img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;">
+<img src="https://live.staticflickr.com/65535/50536606647_7645c09c3b_c.jpg" style="width: 100px; height: 100px;"><br/>
 Means finally that we have to take care about<br/>
 the short cut steps needed to reach the apple<br/>
 and<br/>
