@@ -213,7 +213,7 @@ it is legitimate to assume that we need less steps when we stick with the starti
 <br/>
 <br/>
 <br/>
-Believe me this was just one excurse in one scenario.<br/>
+Believe me, this was just one excursion into one of many scenarios.<br/>
 <br/>
 Last, but not least:<br/>
 Enjoy the code!<br/>
