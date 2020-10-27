@@ -166,7 +166,7 @@ Like: Is it possible to go one row up? Or are there still parts of the snake?<br
 <br/>
 But we also have to take into account that going up one line would mean that we could only generate<br/>
 the next abbreviation path when all snake parts (head, body, tail) are in the order specified by the<br/>
-generated Hamilton cycle.<br/>
+generated Hamilton Cycle.<br/>
 <br/>
 <br/>
 This leads us to the calculation that the maximum number of spared steps are equal to<br/>
