@@ -109,7 +109,7 @@ Top level keywords how it works:<br/>
 <br/>
 Surprisingly is the resulting "ShortCut" class very compact, reliable and fast.<br/>
 Finally contains its only few if / else statements.<br/>
-The most time consuming part is the "query logic" which checks that all the snake parts are in the correct order of the Hamilton cycle.<br/>
+At run time is the most time consuming part the "query logic" which checks whether all the snake parts are in the correct order of the Hamilton Cycle.<br/>
 <br/>
 To make not only this test as quick as possible, I introduced some classes which are providing everything needed.<br/>
 I've also thought about further optimizations.<br/>
