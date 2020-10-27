@@ -159,23 +159,30 @@ For the above shown situations its looks good but what in situations like shown 
 <img src="https://live.staticflickr.com/65535/50537260752_16e6194f0b_z.jpg""><br/>
 <img src="https://live.staticflickr.com/65535/50536384398_2fce8a3915_z.jpg"><br/>
 Means we have also to consider about the situation when the snake eat the apple.<br/>
-Like: Is it possible to go one line up? (To stay in this example.)<br/>
+Like: Is it possible to go one row up? Or are there still parts of the snake?<br/>
+(To stay in this example.)<br/>
 <br/>
-But we have also to consider about the fact that going one line up would means that we could not generate<br/>
-the next abbreviation path until snake parts (head, body, tail) are in the correct order given by the generated Hamiltonian Cycle.<br/>
-<br/>
+But we have also to consider about the fact that going one row up would means that we could not generate<br/>
+the next abbreviation path until all snake parts (head, body, tail) are in the correct order given by the<br/>
+generated Hamiltonian Cycle.<br/>
 <br/>
 <br/>
 This leads us to the calculation that the maximun number of spared steps are equal to<br/>
-a) the number of columns<br/>
-minus one for the first colum<br/>
-minus one for the cell that contains the apple<br/>
-<br/>                                             
+<ul>
+  <li>
+    the number of columns<br/>
+    minus one for the first colum<br/>
+    minus one for the cell that contains the apple
+  </li>
+</ul>
 plus<br/>
-<br/>
-b) the number of columns<br/>
-minus one for the first colum<br/>
-minus one for the cell that contains the snake head.<br/>
+<ul>
+  <li>
+    the number of columns<br/>
+    minus one for the first colum<br/>
+    minus one for the cell that contains the snake head.
+  </li>
+</ul>
 <br/>
 Finally we are talking about an amount of spared steps equal to:<br/>
 Two times the playfield width minus four.<br/>
