@@ -158,7 +158,8 @@ Ok, so lets try to spare these two steps menat above!<br/>
 <br/>
 For the above shown situations its looks good but what in situations like shown in the following image?<br/>
 <br/>
-<img src="https://live.staticflickr.com/65535/50536149583_37ee0c5b9d_c.jpg" style="width: 100px; height: 100px;"><br/>
+<img src="https://live.staticflickr.com/65535/50537260752_16e6194f0b_z.jpg" style="width: 100px; height: 100px;"><br/>
+<img src="https://live.staticflickr.com/65535/50536384398_2fce8a3915_z.jpg" style="width: 100px; height: 100px;"><br/>
 Means finally that we have to take care about<br/>
 the short cut steps needed to reach the apple<br/>
 and<br/>
