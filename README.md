@@ -191,7 +191,7 @@ Finally we are talking about an amount of spared steps equal to:<br/>
 Two times the playfield width minus four.<br/>
 (Please notice that this is a approximation - but I believe a very accurate one.)<br/>
 <br/>
-Lets call the amount of these spared steps "Amount Spared Steps"<br/>
+Lets call the amount of these spared steps "Amount Spared Steps".<br/>
 <br/>
 On the other hand, doing it as discussed means that we have to wait with<br/>
 the next abbreviation path calculation until all snake parts are "in-line".<br/>
@@ -204,7 +204,7 @@ In case snakes length is<br/>
   </li>
   <li>
     equal or grater than "Amount Spared Steps"<br/>
-    we loose the ability to calculate immediately the next abrreviation,<br/>
+    we loose the ability to calculate immediately the next abbreviation,<br/>
     what can lead to more steps then we spare steps as mentioned in "Amount Spared Steps".
   </li>
 </ul>
