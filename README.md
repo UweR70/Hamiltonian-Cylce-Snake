@@ -209,6 +209,7 @@ In case snakes length is<br/>
 Due the fact that we will have more situations where the snakes length<br/>
 is greater than two times the playfield width (minus four)<br/> 
 it is legitimate to assume that we need less steps when we stick with the starting situation:<br/>
+<br/>
 <img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">
 <br/>                                  
 Believe me, this was just one excursion into one of many scenarios.<br/>
