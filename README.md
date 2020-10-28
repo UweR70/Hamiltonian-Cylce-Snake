@@ -221,7 +221,7 @@ Believe me, this was just one excursion into one of many scenarios.<br/>
     Fully developed. Uses Hamiltonian Cycle and abbreviation functionality.
   </li>
   <li>
-    case 3:<br/>
+    case 2:<br/>
     Partially developed. Uses Hamiltonian Cycle only. Maybe I'll add an abbreviation functionality later in this case too.
   </li>
   <li>
