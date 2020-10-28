@@ -31,7 +31,7 @@ namespace Snake.Classes
         {
             // Example: width = 6, height = 6 -> even / even -> is case 1: 
             public MoveDirection[,] MoveDirections; //        MoveDirections[2, 3] = .Right
-            public int[,] PointToSequenceNumber;    // PointToSequenceNumber[2, 3] = 19            (20th Element becasue zero base counted)    
+            public int[,] PointToSequenceNumber;    // PointToSequenceNumber[2, 3] = 19            (20th Element because zero base counted)    
             public Point[] SequenceNumberToPoint;   // SequenceNumberToPoint[19]   = Point(2, 3)
         }
 

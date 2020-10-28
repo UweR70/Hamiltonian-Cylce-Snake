@@ -139,7 +139,7 @@ namespace Snake
 
                 CoreLogic = new GameLogic(PlayFieldWidth, PlayFieldHeight);
 
-                // ToDo: Reminder to redisign the app: The Form, TextBox, Panel control dimensions, but also the following (Square) variables should be a function of playfield dimensions.
+                // ToDo: Reminder to redesign the app: The Form, TextBox, Panel control dimensions, but also the following (Square) variables should be a function of the given playfield dimensions.
                 SquareWidth = 20;
                 SquareHeight = 20;
                 SquareDeltaX = 2;
@@ -268,7 +268,6 @@ namespace Snake
             }).ContinueWith(result =>
             {
                 // Controls are handled here to avoid a "cross-thread" error.
-
                 if (IsUserInterrupted)
                 {
                     if (!IsHamiltonianCycleShown)

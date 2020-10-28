@@ -1,5 +1,4 @@
-﻿using System;
-using static Snake.Classes.GameLogic;
+﻿using static Snake.Classes.GameLogic;
 using static Snake.Classes.HamiltonianCycle;
 
 namespace Snake.Classes
@@ -39,25 +38,10 @@ namespace Snake.Classes
             }
 
             // Check whether all snake parts are in the Hamiltonia Cycle. Leave if not.
-            for (int i = 0; i < returnDatas.SnakePositions.Count - 1; i++)
+            if (!AreAllSnakePartsInTheHamiltonianCycle(returnDatas, HamiltonianCycleData))
             {
-                var pointA = returnDatas.SnakePositions[i];
-                var pointB = returnDatas.SnakePositions[i + 1];
-
-                if (HamiltonianCycleData.Data.PointToSequenceNumber[pointA.X, pointA.Y] == 0)
-                {
-                    if (HamiltonianCycleData.Data.PointToSequenceNumber[pointB.X, pointB.Y] != HamiltonianCycleData.Data.PointToSequenceNumber.Length - 1)
-                    {
-                        return;
-                    }
-
-                }
-                else if (HamiltonianCycleData.Data.PointToSequenceNumber[pointA.X, pointA.Y] - 1 != HamiltonianCycleData.Data.PointToSequenceNumber[pointB.X, pointB.Y])
-                {
-                    return;
-                }
+                return;
             }
-            // All snake parts are in the Hamiltonian Cycle.
             
             if (snakesHeadPosition.Y > applePosition.Y)
             {
@@ -120,7 +104,38 @@ namespace Snake.Classes
             var snakesHeadPosition = returnDatas.SnakePositions[0];
             var applePosition = returnDatas.ApplePosition;
 
+            if (!AreAllSnakePartsInTheHamiltonianCycle(returnDatas, HamiltonianCycleData))
+            { 
+                return;
+            }
+
+            var dummy = 1;
             // throw new Exception("Implement it!"); // ToDo: Impelent it!
+        }
+        
+        private bool AreAllSnakePartsInTheHamiltonianCycle(ReturnData returnDatas, HamiltonianCycleData HamiltonianCycleData)
+        {
+            // Check whether all snake parts are in the Hamiltonia Cycle.
+            for (int i = 0; i < returnDatas.SnakePositions.Count - 1; i++)
+            {
+                var pointA = returnDatas.SnakePositions[i];
+                var pointB = returnDatas.SnakePositions[i + 1];
+
+                if (HamiltonianCycleData.Data.PointToSequenceNumber[pointA.X, pointA.Y] == 0)
+                {
+                    if (HamiltonianCycleData.Data.PointToSequenceNumber[pointB.X, pointB.Y] != HamiltonianCycleData.Data.PointToSequenceNumber.Length - 1)
+                    {
+                        return false;
+                    }
+
+                }
+                else if (HamiltonianCycleData.Data.PointToSequenceNumber[pointA.X, pointA.Y] - 1 != HamiltonianCycleData.Data.PointToSequenceNumber[pointB.X, pointB.Y])
+                {
+                    return false;
+                }
+            }
+            // All snake parts are in the Hamiltonian Cycle.
+            return true;
         }
     }
 }

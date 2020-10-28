@@ -131,7 +131,7 @@
             this.numUpDown_Height.Size = new System.Drawing.Size(34, 20);
             this.numUpDown_Height.TabIndex = 6;
             this.numUpDown_Height.Value = new decimal(new int[] {
-            10,
+            9,
             0,
             0,
             0});
