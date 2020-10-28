@@ -68,7 +68,7 @@ namespace Snake.Classes
                     // The apple is up next to the snakehead.
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
-                else if (snakesHeadPosition.X < applePosition.X && !Common.IsValueEven(applePosition.X))
+                else if (snakesHeadPosition.X < applePosition.X && !Common.IsValueEven(applePosition.Y))
                 {
                     // Snakes head is left from the apple
                     // AND
@@ -77,7 +77,7 @@ namespace Snake.Classes
                     // because the then following non-shortcut path (aka "normal" Hamiltonian Cylce) is going to lead the snake into the apple.
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
                 }
-                else if (snakesHeadPosition.X > applePosition.X && Common.IsValueEven(applePosition.X))
+                else if (snakesHeadPosition.X > applePosition.X && Common.IsValueEven(applePosition.Y))
                 {
                     // Snakes head is right from the apple ... -> See previous comment.
                     returnDatas.ShotCutMoveDirections.Add(MoveDirection.Up);
