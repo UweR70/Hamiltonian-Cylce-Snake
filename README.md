@@ -158,7 +158,7 @@ Ok, so let's try to spare these two steps meant above!<br/>
 It looks fine for the situations shown above, but what about situations like the one shown in the following figure?<br/>
 <br/>
 <img src="https://live.staticflickr.com/65535/50537260752_16e6194f0b_z.jpg""><br/>
-<img src="https://live.staticflickr.com/65535/50536384398_2fce8a3915_z.jpg"><br/>
+<img src="https://live.staticflickr.com/65535/50536384398_2fce8a3915_z.jpg">
 Means we have also to consider about the situation when the snake eat the apple.<br/>
 Like: Is it possible to go one row up? Or are there still parts of the snake?<br/>
 (To stay in this example.)<br/>
@@ -209,9 +209,8 @@ In case snakes length is<br/>
 Due the fact that we will have more situations where the snakes length<br/>
 is greater than two times the playfield width (minus four)<br/> 
 it is legitimate to assume that we need less steps when we stick with the starting situation:<br/>
-<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">                                                                                
 <br/>
-<br/>
+<img src="https://live.staticflickr.com/65535/50536244562_fb1632bfdd_w.jpg" style="width: 100px; height: 100px;">                              
 Believe me, this was just one excursion into one of many scenarios.<br/>
 <br/>
 
@@ -222,14 +221,17 @@ Believe me, this was just one excursion into one of many scenarios.<br/>
     Fully developed. Uses Hamiltonian Cycle and abbreviation functionality.
   </li>
   <li>
-    case 3:<br/>
+    case 2:<br/>
     Partially developed. Uses Hamiltonian Cycle only. Maybe I'll add an abbreviation functionality later in this case too.
   </li>
   <li>
     case 4:<br/>
     Nothing to develop because for this case is no Hamiltonian Cycle possible.
   </li>
- </ul>
- 
+  <li>
+    <h3>For sure there are much more optimizations (also in the abbreviation functionality) possible!</h3><br/>
+  </li>
+</ul>
+
 # Last, but not least:<br/>
 Enjoy the code!<br/>
