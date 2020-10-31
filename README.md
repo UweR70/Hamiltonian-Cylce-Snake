@@ -233,5 +233,5 @@ Believe me, this was just one excursion into one of many scenarios.<br/>
   </li>
 </ul>
 
-# Last, but not least:<br/>
-Enjoy the code!<br/>
+# Last but not least<br/>
+Enjoy<br/>
