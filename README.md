@@ -107,7 +107,7 @@ Top level keywords how it works:<br/>
 </ul>
 <br/>
 Surprisingly is the resulting "ShortCut" class very compact, reliable and fast.<br/>
-Finally contains its only few if / else and for statements.<br/>
+Finally contains it only few if / else and for statements.<br/>
 At run time is the most time consuming part the "query logic" which checks whether all the snake parts are in the correct order of the Hamiltonian Cycle.<br/>
 <br/>
 To make not only this test as quick as possible, I introduced some classes which are providing everything needed.<br/>
