@@ -106,7 +106,7 @@ Top level keywords how it works:<br/>
   </li>
 </ul>
 <br/>
-Surprisingly is the resulting "ShortCut" class very compact, reliable and fast.<br/>
+Surprisingly is the resulting <a href="https://github.com/UweR70/Hamiltonian-Cylce-Snake/blob/master/Snake/Classes/ShortCut.cs" target="_blank">"ShortCut"</a> class very compact, reliable and fast.<br/>
 Finally contains it only few if / else and for statements.<br/>
 At run time is the most time consuming part the "query logic" which checks whether all the snake parts are in the correct order of the Hamiltonian Cycle.<br/>
 <br/>
