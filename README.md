@@ -229,6 +229,12 @@ Believe me, this was just one excursion into one of many scenarios.<br/>
     Nothing to develop because for this case is no Hamiltonian Cycle possible.
   </li>
   <li>
+    This <a href="https://www.youtube.com/watch?v=UI_I6sJXaJw">video</a> shows the two parts of my application in action.<br/>
+    Part 1: Visualizing the Hamiltonian Cycle in the user 16 x 16 selected playfield.<br/>
+    Part 2: Solving it.<br/>
+    Sorry the video has no sound, funny comments, nor animations, etc.
+  </li>
+  <li>
     <h3>For sure there are much more optimizations (also in the abbreviation functionality) possible!</h3><br/>
   </li>
 </ul>
