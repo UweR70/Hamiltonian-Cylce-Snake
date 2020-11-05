@@ -16,9 +16,16 @@ However, my thought was that the Hamiltonian Cycle ... <br/>
 So the seed were set ... and I started this project.<br/>
 
 # Spoiler
-I solved it, added abbreviations and the snake <b>always</b> reaches the maximum length specified by the playing field;<br/> 
-except for case 4 where no Hamiltonian Cycle is possible. Details as follows.<br/>
-This <a href="https://www.youtube.com/watch?v=UI_I6sJXaJw">video</a> shows the two parts of my application in action.<br/>
+<details>
+  <summary>
+	  Click me
+	</summary>
+	<p>
+		I solved it, added abbreviations and the snake <b>always</b> reaches the maximum length specified by the playing field;<br/> 
+	  except for case 4 where no Hamiltonian Cycle is possible. Details as follows.<br/>
+	  This <a href="https://www.youtube.com/watch?v=UI_I6sJXaJw">video</a> shows the two parts of my application in action.<br/>
+	</p>
+</details>
 
 # Thoughts
 (A)<br/>
