@@ -14,7 +14,10 @@ However, my thought was that the Hamiltonian Cycle ... <br/>
 ... shown in the aforementioned video could be made much smoother, which should certainly lead to a much more effective path optimization.<br/>
 <br/>
 So the seed were set ... and I started this project.<br/>
-<br/>
+
+# Spoiler
+I solved it, added abbreviations and the snake always reaches the maximum length specified by the playing field; 
+except for case 4 where no Hamiltonian Cycle is possible. Details as follows.
 
 # Thoughts
 (A)<br/>
