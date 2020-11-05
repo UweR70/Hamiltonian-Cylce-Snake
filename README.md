@@ -7,7 +7,7 @@ Hamiltonian Cycles (https://en.wikipedia.org/wiki/Hamiltonian_path), and this Yo
 I Created a PERFECT SNAKE A.I.<br/>
 https://www.youtube.com/watch?v=tjQIO1rqTBE<br/>
 <br/>
-However, my thought was that the Hamilton cycle ... <br/>
+However, my thought was that the Hamiltonian Cycle ... <br/>
 <br/>
 <img src="https://live.staticflickr.com/65535/50508327758_f8a6e273ee_k.jpg" style="width: 100px; height: 100px;"><br/>
 <br/>
