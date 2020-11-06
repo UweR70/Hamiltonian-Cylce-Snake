@@ -1,6 +1,6 @@
 # Hamiltonian-Cylce-Snake
 
-# Forword
+## Forword
 
 To be clear, unambiguous and right at the beginning:<br/> 
 <ul>
@@ -17,7 +17,7 @@ To be clear, unambiguous and right at the beginning:<br/>
   </li>
 </ul>
 
-# Story
+## Story
 This is all about the game Snake (https://en.wikipedia.org/wiki/Snake_(video_game_genre)),<br/>
 Hamiltonian Cycles (https://en.wikipedia.org/wiki/Hamiltonian_path), and this YouTube<sup>®</sup> video<br/>
 <br/>
@@ -32,7 +32,7 @@ However, my thought was that the Hamiltonian Cycle ... <br/>
 <br/>
 So the seed were set ... and I started this project.<br/>
 
-# Spoiler
+## Spoiler
 <details>
   <summary>
 	  Click me
@@ -44,7 +44,7 @@ So the seed were set ... and I started this project.<br/>
 	</p>
 </details>
 
-# Thoughts
+## Thoughts
 (A)<br/>
 The play field is defined through width (or x) and height (or y).<br/>
 There are four cases:<br/>
@@ -145,7 +145,7 @@ For example, playfield squares/cells are only drawn if the current color differs
 Take a deep dive in my code and you will find much more optimization topics.<br/>
 <br/>
 
-# Deep thoughts
+## Deeper thoughts
 Just to give you an impression how deep my thoughts were.<br/>
 Please notice that the following examples are representing a case 1 playfield where x and y are even; which also handles case 3, see above.<br/>
 <br/>
@@ -242,7 +242,7 @@ it is legitimate to assume that we need less steps when we stick with the starti
 Believe me, this was just one excursion into one of many scenarios.<br/>
 <br/>
 
-# Remarks
+## Remarks
 <ul>
   <li>
     case 1 and 3:<br/>
@@ -267,5 +267,5 @@ Believe me, this was just one excursion into one of many scenarios.<br/>
   </li>
 </ul>
 
-# Last but not least<br/>
+## Last but not least<br/>
 Enjoy!<br/>
