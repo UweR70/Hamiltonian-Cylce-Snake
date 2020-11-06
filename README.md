@@ -1,5 +1,22 @@
 # Hamiltonian-Cylce-Snake
 
+# Forword
+
+To be clear, unambiguous and right at the beginning:<br/> 
+<ul>
+  <li>
+    <h3>This project contains NO A.I. (artificial intelligence)!</h3>
+  </li>
+  <li>
+    This is not an attempt to claim that this project produces better results than any (A.I. / non A.I.) project!
+  </li>
+  <li>
+    It's just about finding a way to solve as many symmetrical or asymmetrical snake playing fields as possible<br/>
+    and<br/> 
+    using abbreviations to speed everything up.
+  </li>
+</ul>
+
 # Story
 This is all about the game Snake (https://en.wikipedia.org/wiki/Snake_(video_game_genre)),<br/>
 Hamiltonian Cycles (https://en.wikipedia.org/wiki/Hamiltonian_path), and this YouTube<sup>®</sup> video<br/>
