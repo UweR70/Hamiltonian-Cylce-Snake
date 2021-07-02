@@ -66,7 +66,7 @@
             // 
             // numUpDown_Width
             // 
-            this.numUpDown_Width.BackColor = System.Drawing.SystemColors.Window;
+            this.numUpDown_Width.BackColor = System.Drawing.SystemColors.Control;
             this.numUpDown_Width.Location = new System.Drawing.Point(96, 9);
             this.numUpDown_Width.Margin = new System.Windows.Forms.Padding(2);
             this.numUpDown_Width.Maximum = new decimal(new int[] {
@@ -111,7 +111,7 @@
             // 
             // numUpDown_Height
             // 
-            this.numUpDown_Height.BackColor = System.Drawing.SystemColors.Window;
+            this.numUpDown_Height.BackColor = System.Drawing.SystemColors.Control;
             this.numUpDown_Height.Location = new System.Drawing.Point(96, 28);
             this.numUpDown_Height.Margin = new System.Windows.Forms.Padding(2);
             this.numUpDown_Height.Maximum = new decimal(new int[] {
@@ -159,15 +159,16 @@
             // 
             this.numUpDown_WaitFactor.Location = new System.Drawing.Point(96, 78);
             this.numUpDown_WaitFactor.Maximum = new decimal(new int[] {
-            25,
+            50,
             0,
             0,
             0});
             this.numUpDown_WaitFactor.Name = "numUpDown_WaitFactor";
+            this.numUpDown_WaitFactor.ReadOnly = true;
             this.numUpDown_WaitFactor.Size = new System.Drawing.Size(45, 20);
             this.numUpDown_WaitFactor.TabIndex = 9;
             this.numUpDown_WaitFactor.Value = new decimal(new int[] {
-            5,
+            50,
             0,
             0,
             0});
