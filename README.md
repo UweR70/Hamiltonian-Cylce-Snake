@@ -1,22 +1,50 @@
 # Hamiltonian-Cylce-Snake
 
-# Story
+## Forword
+
+To be clear, unambiguous and right at the beginning:<br/> 
+<ul>
+  <li>
+    <h3>This project contains NO A.I. (artificial intelligence)!</h3>
+  </li>
+  <li>
+    This is not an attempt to claim that this project produces better results than any (A.I. / non A.I.) project!
+  </li>
+  <li>
+    It's just about finding a way to solve as many symmetrical or asymmetrical snake playing fields as possible<br/>
+    and<br/> 
+    using abbreviations to speed everything up.
+  </li>
+</ul>
+
+## Story
 This is all about the game Snake (https://en.wikipedia.org/wiki/Snake_(video_game_genre)),<br/>
 Hamiltonian Cycles (https://en.wikipedia.org/wiki/Hamiltonian_path), and this YouTube<sup>®</sup> video<br/>
 <br/>
 I Created a PERFECT SNAKE A.I.<br/>
 https://www.youtube.com/watch?v=tjQIO1rqTBE<br/>
 <br/>
-However, my thought was that the Hamilton cycle ... <br/>
+However, my thought was that the Hamiltonian Cycle ... <br/>
 <br/>
 <img src="https://live.staticflickr.com/65535/50508327758_f8a6e273ee_k.jpg" style="width: 100px; height: 100px;"><br/>
 <br/>
 ... shown in the aforementioned video could be made much smoother, which should certainly lead to a much more effective path optimization.<br/>
 <br/>
 So the seed were set ... and I started this project.<br/>
-<br/>
 
-# Thoughts
+## Spoiler
+<details>
+  <summary>
+	  Click me
+	</summary>
+	<p>
+		I solved it, added abbreviations and the snake <b>always</b> reaches the maximum length specified by the playing field;<br/> 
+	  except for case 4 where no Hamiltonian Cycle is possible. Details as follows.<br/>
+	  This <a href="https://www.youtube.com/watch?v=UI_I6sJXaJw">video</a> shows the two parts of my application in action.<br/>
+	</p>
+</details>
+
+## Thoughts
 (A)<br/>
 The play field is defined through width (or x) and height (or y).<br/>
 There are four cases:<br/>
@@ -106,9 +134,9 @@ Top level keywords how it works:<br/>
   </li>
 </ul>
 <br/>
-Surprisingly is the resulting "ShortCut" class very compact, reliable and fast.<br/>
-Finally contains its only few if / else statements.<br/>
-At run time is the most time consuming part the "query logic" which checks whether all the snake parts are in the correct order of the Hamilton Cycle.<br/>
+Surprisingly is the resulting <a href="https://github.com/UweR70/Hamiltonian-Cylce-Snake/blob/master/Snake/Classes/ShortCut.cs" target="_blank">"ShortCut"</a> class very compact, reliable and fast.<br/>
+Finally contains it only few if / else and for statements.<br/>
+At run time is the most time consuming part the "query logic" which checks whether all the snake parts are in the correct order of the Hamiltonian Cycle.<br/>
 <br/>
 To make not only this test as quick as possible, I introduced some classes which are providing everything needed.<br/>
 I've also thought about further optimizations.<br/>
@@ -117,7 +145,7 @@ For example, playfield squares/cells are only drawn if the current color differs
 Take a deep dive in my code and you will find much more optimization topics.<br/>
 <br/>
 
-# Deep thoughts
+## Deeper thoughts
 Just to give you an impression how deep my thoughts were.<br/>
 Please notice that the following examples are representing a case 1 playfield where x and y are even; which also handles case 3, see above.<br/>
 <br/>
@@ -214,7 +242,7 @@ it is legitimate to assume that we need less steps when we stick with the starti
 Believe me, this was just one excursion into one of many scenarios.<br/>
 <br/>
 
-# Remarks
+## Remarks
 <ul>
   <li>
     case 1 and 3:<br/>
@@ -222,16 +250,22 @@ Believe me, this was just one excursion into one of many scenarios.<br/>
   </li>
   <li>
     case 2:<br/>
-    Partially developed. Uses Hamiltonian Cycle only. Maybe I'll add an abbreviation functionality later in this case too.
+     Fully developed. Uses Hamiltonian Cycle and abbreviation functionality.
   </li>
   <li>
     case 4:<br/>
     Nothing to develop because for this case is no Hamiltonian Cycle possible.
   </li>
   <li>
+    This <a href="https://www.youtube.com/watch?v=UI_I6sJXaJw">video</a> shows the two parts of my application in action.<br/>
+    Part 1: Visualizing the Hamiltonian Cycle in the user 16 x 16 selected playfield.<br/>
+    Part 2: Solving it.<br/>
+    Sorry the video has no sound, funny comments, nor animations, etc.
+  </li>
+  <li>
     <h3>For sure there are much more optimizations (also in the abbreviation functionality) possible!</h3><br/>
   </li>
 </ul>
 
-# Last, but not least:<br/>
-Enjoy the code!<br/>
+## Last but not least<br/>
+Enjoy!<br/>
