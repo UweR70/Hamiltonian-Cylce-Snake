@@ -36,7 +36,6 @@ namespace Snake
         private Color ColorSnakeBody;
         private Color ColorSnakeTail;
 
-        private Pen CurrentDrawPen;
         private SolidBrush CurrentSolidBrush;
 
         private int SquareWidth;
@@ -147,7 +146,6 @@ namespace Snake
                 SquareDeltaY = 2;
 
                 CurrentSolidBrush = new SolidBrush(Color.Empty);
-                CurrentDrawPen = new Pen(CurrentSolidBrush);
 
                 ColorPlayField =Color.Black;
                 ColorHamiltonianCycle = Color.DarkKhaki;
@@ -321,8 +319,8 @@ namespace Snake
             /* "pointList" contains a list of cartesian coordiantes that should be changed.
              * This can be one point for the apple or 100 points for snakes body.
              * 
-             * The "drawItem" defines which kind of change it is.
-             * This information defines finally which color must be used!
+             * The "drawItem" defines the change  kind.
+             * This information defines finally the color to use.
              */
             for (int i = 0; i < pointList.Count; i++)
             {
@@ -372,7 +370,7 @@ namespace Snake
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            if (CurrentDrawPen ==  null || CurrentSolidBrush == null)
+            if (CurrentSolidBrush == null)
             { 
                 return;
             }
@@ -381,9 +379,6 @@ namespace Snake
             {
                 for (int w = 0; w < PlayFieldWidth; w++)
                 {
-                    CurrentDrawPen.Color = PlayFieldData[w, h].Color;
-                    e.Graphics.DrawRectangle(CurrentDrawPen, PlayFieldData[w, h].DrawDatas);
-
                     CurrentSolidBrush.Color = PlayFieldData[w, h].Color;
                     e.Graphics.FillRectangle(CurrentSolidBrush, PlayFieldData[w, h].DrawDatas);
                 }
@@ -397,14 +392,12 @@ namespace Snake
                 return;
             }
 
-            // var before = DateTime.Now;
             var index = 0;
             var maxLoop = 500000 * WaitFactor;
             do
             {
                 index++;
             } while (index < maxLoop);
-            // var delta = (DateTime.Now - before).ToString("s\\.ffff");
         }
 
         private void numUpDown_WaitFactor_ValueChanged(object sender, EventArgs e)
