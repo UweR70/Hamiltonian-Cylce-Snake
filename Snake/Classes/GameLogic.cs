@@ -54,7 +54,11 @@ namespace Snake.Classes
 
         private void SetTestData()
         {
+            ReturnDatas.IslogicalEndReached = false;
+            
             ReturnDatas.ResetThesePositions = new List<Point>();
+            ReturnDatas.ShotCutMoveDirections = new List<MoveDirection>();
+
             ReturnDatas.ApplePosition = new Point(5, 5);
             ReturnDatas.SnakePositions = new List<Point>() {
                 new Point(4, 7),     // head

@@ -13,11 +13,14 @@ namespace Snake
         public int PlayFieldWidth;
         public int PlayFieldHeight;
 
+        private PlayFieldData[,] PlayFieldData;
+
         private enum DrawItem
         {
             PlayField = 0,
             Apple, 
-            Snake
+            Snake,
+            HamiltonianCycle
         }
 
         private GameLogic CoreLogic;
@@ -26,25 +29,22 @@ namespace Snake
         private bool IsUserInterrupted;
         private bool IsHamiltonianCycleShown;
 
-        private Graphics Graphics;
+        private Color ColorPlayField;
+        private Color ColorHamiltonianCycle;
+        private Color ColorApple;
+        private Color ColorSnakeHead;
+        private Color ColorSnakeBody;
+        private Color ColorSnakeTail;
 
-        private Pen PenPlayField;
-        private Pen PenHamiltonianCycle;
-        private Pen PenApple;
-        private Pen PenSnakeHead;
-        private Pen PenSnakeBody;
-        private Pen PenSnakeTail;
-
-        private SolidBrush SolidBrush;
-
-        private Rectangle Square;
+        private Pen CurrentDrawPen;
+        private SolidBrush CurrentSolidBrush;
 
         private int SquareWidth;
         private int SquareHeight;
         private int SquareDeltaX;
         private int SquareDeltaY;
 
-        private Color[,] CurrentColors;
+        private int WaitFactor;
 
         private int DrawCounter;
 
@@ -62,6 +62,8 @@ namespace Snake
         {
             var width = (int)numUpDown_Width.Value;
             var height = (int)numUpDown_Height.Value;
+
+            WaitFactor = (int)numUpDown_WaitFactor.Value;
 
             var errorMessage = string.Empty;
             if (width < 2)
@@ -111,23 +113,22 @@ namespace Snake
 
             if (IsAppRunning)
             {
-                numUpDown_Width.Enabled = numUpDown_Height.Enabled = true;
+                numUpDown_Width.Enabled = numUpDown_Height.Enabled = chkBx_ShowHamiltonianCycle.Enabled = true;
 
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
 
                 IsUserInterrupted = true;
-
-                CurrentColors = null;
             }
             else
             {
-                panel1.Refresh();
-                numUpDown_Width.Enabled = numUpDown_Height.Enabled = false;
+                pictureBox1.Image = null;
+
+                numUpDown_Width.Enabled = numUpDown_Height.Enabled = chkBx_ShowHamiltonianCycle.Enabled = false;
 
                 if (!GetPlayFieldDimension())
                 {
-                    numUpDown_Width.Enabled = numUpDown_Height.Enabled = true;
+                    numUpDown_Width.Enabled = numUpDown_Height.Enabled = chkBx_ShowHamiltonianCycle.Enabled = true;
                     return;
                 }
 
@@ -145,22 +146,15 @@ namespace Snake
                 SquareDeltaX = 2;
                 SquareDeltaY = 2;
 
-                Square = new Rectangle
-                {
-                    Width = SquareWidth,
-                    Height = SquareHeight
-                };
+                CurrentSolidBrush = new SolidBrush(Color.Empty);
+                CurrentDrawPen = new Pen(CurrentSolidBrush);
 
-                Graphics = panel1.CreateGraphics();
-                
-                SolidBrush = new SolidBrush(Color.Empty);
-
-                PenPlayField = new Pen(Color.Black);
-                PenHamiltonianCycle = new Pen(Color.DarkKhaki);
-                PenApple = new Pen(Color.Red);
-                PenSnakeHead = new Pen(Color.Blue);
-                PenSnakeBody = new Pen(Color.Green);
-                PenSnakeTail = new Pen(Color.Yellow);
+                ColorPlayField =Color.Black;
+                ColorHamiltonianCycle = Color.DarkKhaki;
+                ColorApple = Color.Red;
+                ColorSnakeHead = Color.Blue;
+                ColorSnakeBody = Color.Green;
+                ColorSnakeTail = Color.Yellow;
 
                 DrawCounter = 0;
 
@@ -182,9 +176,19 @@ namespace Snake
                     "Current playfield dimensions:\r\n" +
                     $"\tWidth: {PlayFieldWidth},\r\n" +
                     $"\tHeight: {PlayFieldHeight}\r\n" +
-                    "\r\n";                   
+                    "\r\n";
 
-                ShowHamiltonianCycle();
+                InitPlayField(PlayFieldWidth, PlayFieldHeight);
+
+                if (chkBx_ShowHamiltonianCycle.Checked)
+                {
+                    ShowHamiltonianCycle();
+                }
+                else
+                {
+                    IsHamiltonianCycleShown = true;
+                }
+
                 CoreLogicWrapper();
             }
         }
@@ -194,12 +198,11 @@ namespace Snake
             Log("The Hamiltonian Cycle will be displayed.");
             var taskA = Task.Factory.StartNew(() =>
             {
-                InitPlayField(PlayFieldWidth, PlayFieldHeight);
-
                 var currentPosition = new Point(0, 0);
                 do
                 {
-                    DrawOneRectangle(currentPosition, PenHamiltonianCycle);
+                    ChangePlayFieldData(new List<Point> { currentPosition }, DrawItem.HamiltonianCycle);
+                    pictureBox1.Invalidate();
                     switch (CoreLogic.HamiltonianCycleData.Data.MoveDirections[currentPosition.X, currentPosition.Y])
                     {
                         case HamiltonianCycle.MoveDirection.Up:
@@ -215,7 +218,7 @@ namespace Snake
                             currentPosition.X++;
                             break;
                     }
-                    Thread.Sleep(5);
+                    Wait();
                 } while (!(currentPosition.X == 0 && currentPosition.Y == 0) && !IsUserInterrupted);
             }).ContinueWith(result =>
             {
@@ -251,19 +254,20 @@ namespace Snake
                     coreLogicReturns = CoreLogic.Main();
                     if (coreLogicReturns.ResetThesePositions != null && coreLogicReturns.ResetThesePositions.Count > 0)
                     {
-                        DrawPositions(coreLogicReturns.ResetThesePositions, DrawItem.PlayField);
+                        ChangePlayFieldData(coreLogicReturns.ResetThesePositions, DrawItem.PlayField);
                     }
 
                     if (coreLogicReturns.SnakePositions != null && coreLogicReturns.SnakePositions.Count > 0)
                     {
-                        DrawPositions(coreLogicReturns.SnakePositions, DrawItem.Snake);
+                        ChangePlayFieldData(coreLogicReturns.SnakePositions, DrawItem.Snake);
                     }
 
                     if (coreLogicReturns.ApplePosition != null && !coreLogicReturns.IslogicalEndReached)
                     {
-                        DrawOneRectangle(coreLogicReturns.ApplePosition, PenApple);
+                        ChangePlayFieldData(new List<Point> { coreLogicReturns.ApplePosition }, DrawItem.Apple);
                     }
-                    Thread.Sleep(1);
+                    pictureBox1.Invalidate();
+                    Wait();
                 } while (!coreLogicReturns.IslogicalEndReached && IsAppRunning && !IsUserInterrupted);
             }).ContinueWith(result =>
             {
@@ -285,109 +289,127 @@ namespace Snake
                 
                 btn_Start.Text = "Start";
                 IsAppRunning = false;
-                numUpDown_Width.Enabled = numUpDown_Height.Enabled = true;
+                numUpDown_Width.Enabled = numUpDown_Height.Enabled = chkBx_ShowHamiltonianCycle.Enabled = true;
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void InitPlayField(int playFieldWidth, int playFieldHeight)
         {
-            CurrentColors = new Color[PlayFieldWidth, PlayFieldHeight];   // Init
+            PlayFieldData = new PlayFieldData[PlayFieldWidth, PlayFieldHeight];
             for (int h = 0; h < playFieldHeight; h++)
             {
                 for (int w = 0; w < playFieldWidth; w++)
                 {
-                    DrawOneRectangle(new Point { X = w, Y = h }, PenPlayField);
+                    var drawPoint = ConvertArrayIndecesToGraphicalCoordiantes(new Point(w, h));
+                    PlayFieldData[w, h] = new PlayFieldData
+                    {
+                        DrawDatas = new Rectangle {
+                            X = drawPoint.X,
+                            Y = drawPoint.Y,
+                            Width = SquareWidth,
+                            Height = SquareHeight
+                        },
+                        Color = ColorPlayField
+                    };
                 }
             }
+            pictureBox1.Invalidate(); // Triggers "pictureBox1_Paint(...)" call.
         }
 
-        private void DrawPositions(List<Point> pointList, DrawItem drawItem)
+        private void ChangePlayFieldData(List<Point> pointList, DrawItem drawItem)
         {
-            /* Drawing the snake in a simple loop ends in a flickering tail due its "movement".
-             * Solution:
-             * Draw snakes head, than the tail and than the body
-             * in case the snake has a tail (means snakes length is greater than 1).
+            /* "pointList" contains a list of cartesian coordiantes that should be changed.
+             * This can be one point for the apple or 100 points for snakes body.
              * 
-             * Further optimizations: Make the decision which pen should be used outside the loop.
+             * The "drawItem" defines which kind of change it is.
+             * This information defines finally which color must be used!
              */
-            var loopFrom = 0;
-            var loopTo = pointList.Count;
-            
-            var pen = PenPlayField;
-            switch (drawItem)
+            for (int i = 0; i < pointList.Count; i++)
             {
-                case DrawItem.PlayField:
-                    break;
-                case DrawItem.Apple:
-                    pen = PenApple;
-                    break;
-                case DrawItem.Snake:
-                    if (pointList.Count > 1)
-                    {
-                        // Head
-                        DrawOneRectangle(pointList[0], PenSnakeHead);
-
-                        // Tail
-                        DrawOneRectangle(pointList[pointList.Count - 1], PenSnakeTail);
-
-                        if (pointList.Count == 2)
-                        { 
-                            // Everything is drawn.
-                            return; 
+                switch (drawItem)
+                {
+                    case DrawItem.PlayField:
+                        PlayFieldData[pointList[i].X, pointList[i].Y].Color = ColorPlayField;
+                        break;
+                    case DrawItem.Apple:
+                        PlayFieldData[pointList[i].X, pointList[i].Y].Color = ColorApple;
+                        break;
+                    case DrawItem.Snake:
+                        if (i == 0)
+                        {
+                            PlayFieldData[pointList[i].X, pointList[i].Y].Color = ColorSnakeHead;
+                        } else if (i == pointList.Count - 1)
+                        {
+                            PlayFieldData[pointList[i].X, pointList[i].Y].Color = ColorSnakeTail;
                         }
-
-                        //DrawCounter++;
-                        //if(DrawCounter < 100)
-                        //{ 
-                        //    return; 
-                        //}
-                        //DrawCounter = 0;
-
-                        loopFrom = 1;
-                        loopTo = pointList.Count - 1;
-                        pen = PenSnakeBody;
-                    }
-                    else
-                    {
-                        pen = PenSnakeBody;
-                    }
-                    break;
-            }
-
-            for (int i = loopFrom; i < loopTo; i++)
-            {
-                DrawOneRectangle(pointList[i], pen);
-            }
+                        else
+                        {
+                            PlayFieldData[pointList[i].X, pointList[i].Y].Color = ColorSnakeBody;
+                        }
+                        break;
+                    case DrawItem.HamiltonianCycle:
+                        PlayFieldData[pointList[i].X, pointList[i].Y].Color = ColorHamiltonianCycle;
+                        break;
+                    default:
+                        break;
+                }
+            } 
         }
 
-        private void DrawOneRectangle(Point arrayIndex, Pen pen)
-        {
-            if (CurrentColors == null || CurrentColors[arrayIndex.X, arrayIndex.Y] == pen.Color)
-            {
-                return;
-            }
-            CurrentColors[arrayIndex.X, arrayIndex.Y] = pen.Color;
-
-            var graphicalPoint = ConvertArrayIndecesToGraphicalCoordiantes(arrayIndex);
-            Square.X = graphicalPoint.X;
-            Square.Y = graphicalPoint.Y;
-            Graphics.DrawRectangle(pen, Square);
-            SolidBrush.Color = pen.Color;
-            Graphics.FillRectangle(SolidBrush, Square);
-        }
-
-        private Point ConvertArrayIndecesToGraphicalCoordiantes(Point graphicalPoint)
+        private Point ConvertArrayIndecesToGraphicalCoordiantes(Point cartesianCoordinate)
         {
             return new Point
             {
-                X = SquareDeltaX + (SquareDeltaX + SquareWidth) * graphicalPoint.X,
-                Y = SquareDeltaY + (SquareDeltaY + SquareHeight) * graphicalPoint.Y
+                X = SquareDeltaX + (SquareDeltaX + SquareWidth) * cartesianCoordinate.X,
+                Y = SquareDeltaY + (SquareDeltaY + SquareHeight) * cartesianCoordinate.Y
             };
         }
 
         private void Log(string message)
         {
             txtBox_Info.Text += message + "\r\n";
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            if (CurrentDrawPen ==  null || CurrentSolidBrush == null)
+            { 
+                return;
+            }
+
+            for (int h = 0; h < PlayFieldHeight; h++)
+            {
+                for (int w = 0; w < PlayFieldWidth; w++)
+                {
+                    CurrentDrawPen.Color = PlayFieldData[w, h].Color;
+                    e.Graphics.DrawRectangle(CurrentDrawPen, PlayFieldData[w, h].DrawDatas);
+
+                    CurrentSolidBrush.Color = PlayFieldData[w, h].Color;
+                    e.Graphics.FillRectangle(CurrentSolidBrush, PlayFieldData[w, h].DrawDatas);
+                }
+            }
+        }
+
+        private void Wait()
+        {
+            if (WaitFactor == 0)
+            { 
+                return;
+            }
+
+            // var before = DateTime.Now;
+            var index = 0;
+            var maxLoop = 500000 * WaitFactor;
+            do
+            {
+                index++;
+            } while (index < maxLoop);
+            // var delta = (DateTime.Now - before).ToString("s\\.ffff");
+        }
+
+        private void numUpDown_WaitFactor_ValueChanged(object sender, EventArgs e)
+        {
+            WaitFactor = (int)numUpDown_WaitFactor.Value;
         }
     }
 }
